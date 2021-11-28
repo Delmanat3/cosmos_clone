@@ -1,0 +1,96 @@
+body {
+    font-family: 'Kanit';
+    background: rgb(13,13,13);
+    background: linear-gradient(90deg, rgba(13,13,13,1) 0%, rgba(45,91,69,0.7875525210084033) 100%);
+}
+
+ nav ul a,
+ nav .brand-logo {
+   font-size: 20px;
+   color: #52f2d5;
+ }
+ 
+ p {
+   color: white;
+   line-height: 2rem;
+ }
+ 
+ .sidenav-trigger {
+   color: #26a69a;
+ }
+ 
+ .parallax-container {
+   padding-bottom: 400px;
+   min-height: 380px;
+   line-height: 0;
+   height: 300px;
+   color: rgba(255,255,255,.9);
+ }
+   .parallax-container .section {
+     width: 100%;
+   }
+ 
+ @media only screen and (max-width : 992px) {
+   .parallax-container .section {
+     position: absolute;
+     top: 40%;
+   }
+   #index-banner .section {
+     top: 10%;
+   }
+ }
+ 
+ @media only screen and (max-width : 600px) {
+   #index-banner .section {
+     top: 0;
+   }
+ }
+ 
+ .icon-block {
+   padding: 0 15px;
+ }
+ .icon-block .material-icons {
+   font-size: inherit;
+ }
+ 
+ footer.page-footer {
+   margin: 0;
+ }
+
+ #label {
+   text-align: center;
+   font-size: 25px;
+ }
+
+ #label2 {
+  text-align: center;
+  font-size: 25px;
+}
+ .select {
+   color: white;
+ }
+
+.option {
+  color: white;
+}
+
+.select-dropdown {
+  color:white;
+}
+
+.box {
+  height: 50px;
+  border: 3px solid #000000;
+}
+
+
+
+
+
+
+
+
+
+
+
+ 
