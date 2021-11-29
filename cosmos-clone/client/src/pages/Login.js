@@ -7,7 +7,7 @@ import { Checkbox } from "@mui/material";
 import { Button } from "@mui/material";
 import { useState } from 'react';
 import { useEffect } from 'react';
-import { LoginDesktop } from "./LoginDesktop";
+import { LoginDesktop } from "../components/LoginDesktop";
 
 
 export function MediaQuery(){

@@ -26,7 +26,6 @@
   },
   "homepage": "https://github.com/Delmanat3/cosmos_clone#readme",
   "dependencies": {
-    
     "concurrently": "^6.4.0"
   }
 }

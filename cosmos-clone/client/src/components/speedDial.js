@@ -6,7 +6,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
-import { Hero } from './home';
+import { Hero } from '../pages/home';
 
 const actions = [
 
