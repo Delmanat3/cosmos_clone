@@ -1,8 +1,8 @@
 const router=require('express').Router()
 const User=require('./User');
-const Thread=require('./Thread');
+const Coin=require('./Coin');
 
 module.exports={
     User:User,
-    Thread:Thread
+    Coin:Coin
 }

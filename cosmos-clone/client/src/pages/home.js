@@ -10,6 +10,7 @@ import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 
 import { useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
+import { ADD_DATA } from "../utils/mutations";
 
 // import { Button } from "@mui/material"
 // import  Card from './Cards';
@@ -35,7 +36,7 @@ export function Home(props) {
   const [searchInput, setSearchInput] = useState("");
   const [searchedCoins, setSearchedCoins] = useState([]);
   const [coinDesc, setCoinDesc] = useState([]);
-
+  const [saveCoins] = useMutation(ADD_DATA);
   const tickers = [];
   const [searchedBooks, setSearchedBooks] = useState([]);
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
@@ -73,8 +74,9 @@ export function Home(props) {
       image: coin.item.large,
       graphData: coin.item.market_cap_rank,
     }));
-    //console.log(coinData);
+    console.log(coinData);
     setSearchedBooks(coinData);
+  
     const coinsId=coinData
     //console.log(coinsId)
     // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START 2ND API FROM IDS IN TOPSEVEN
@@ -84,18 +86,23 @@ export function Home(props) {
       const response =await SimpleSearch(dataLength)
       const resData=response.data
       arr1.push(resData)
-      //console.log(arr1)
+      console.log(arr1)
     }
     const descData = arr1.map((coin) => ({
       price: coin.market_data.current_price,
       supply: coin.market_data.circulating_supply,
       id: coin.id,
+      name:coin.name,
       image: coin.image,
-      graphData: coin.links,
-      description: coin.description,
+      links: coin.links,
+      description: coin?.description ||'no description'
     }));
+    const fucker=await saveCoins({
+      variables: { savedCoins: { ...descData} },
+
+    })
     console.log(descData)
-    setCoinDesc(descData)
+     setCoinDesc(descData)
     // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\END 2ND API CALL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   };
 
@@ -331,8 +338,9 @@ export function Hero(props) {
   const carouselBtn = (e) => {
     e.preventDefault();
   };
-  const reeree=props.coinDesc
-  console.log(reeree)
+  const reeree=  props.coinDesc
+  const spreader=[...reeree]
+  console.log(spreader)
 
   return (
     <div>
@@ -355,9 +363,10 @@ export function Hero(props) {
                   className="carousel-item-active"
                   data-bs-interval="10000"
                   style={{
-                    backgroundImage: './back.png',
-                    height: "25rem",
                     backgroundColor: "#777",
+                    backgroundImage: {img},
+                    height: "25rem",
+                    
                     color: "white",
                     position: "relative",
                     backgroundPosition: "center",
@@ -367,7 +376,6 @@ export function Hero(props) {
                 ></div>
         {reeree.map((desc) => {
             return (
-               
                 <div
                 key={desc.id}
                   className="carousel-item"
@@ -383,7 +391,7 @@ export function Hero(props) {
                     transition: "transform 2s ease, opacity .5s ease-out",
                   }}
                 ></div>
-             );
+             )
 
           })} 
           </div>
