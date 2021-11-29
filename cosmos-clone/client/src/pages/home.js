@@ -77,7 +77,7 @@ export function Home(props) {
     setSearchedBooks(coinData);
     const coinsId=coinData
     //console.log(coinsId)
-    
+    // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START 2ND API FROM IDS IN TOPSEVEN
     for(let i=0; i < coinsId.length; i++){
       const dataLength=coinsId[i].id
       //console.log(dataLength)
@@ -96,9 +96,11 @@ export function Home(props) {
     }));
     console.log(descData)
     setCoinDesc(descData)
+    // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\END 2ND API CALL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   };
 
   const HandleSearch = async (e) => {
+    // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START SIMPLE SEARCH CALL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
     e.preventDefault();
     const loginBody = new FormData(e.currentTarget);
     const x = loginBody.get("searchInput");
@@ -133,7 +135,7 @@ export function Home(props) {
     setSearchedCoins(coinData);
     setSearchInput("");
   };
-
+// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START SAVING COIN TO DB\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   const handleSaveBook = async (id) => {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedCoins.find((book) => book.id === id);
@@ -157,7 +159,7 @@ export function Home(props) {
       console.error(err);
     }
   };
-
+// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\START NAVBAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   return (
     <>
       <div>
@@ -264,12 +266,15 @@ export function Home(props) {
         </ul>
       </div>
       <div>
+        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\CALLS HERO\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */}
         {" "}
         <Hero coinDesc={coinDesc}/>
       </div>
       <Container sx={{ py: 8 }} maxWidth="lg">
         {/* End hero unit */}
-        {/* CARD CONTENT TOP 7/////////////////////////////// */}
+
+
+        {/* \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ CARD CONTENT TOP 7 /////////////////////////////// */}
         <Grid container spacing={4}>
           {searchedBooks.map((coin) => {
             return (
@@ -320,14 +325,14 @@ export function Home(props) {
     </>
   );
 }
-
+// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\CAROUSEL START\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 export function Hero(props) {
   const img = "./back.jpg";
   const carouselBtn = (e) => {
     e.preventDefault();
   };
   const reeree=props.coinDesc
-  const []
+
   return (
     <div>
       <Box sx={{ pt: "2rem" }}>
@@ -348,7 +353,7 @@ export function Hero(props) {
             return (
               
                 <div
-                key={coinDesc.description}
+                key={desc.description}
                   className="carousel-item"
                   data-bs-interval="10000"
                   style={{
@@ -362,8 +367,6 @@ export function Hero(props) {
                     transition: "transform 2s ease, opacity .5s ease-out",
                   }}
                 ></div>
-                
-              
              );
 
           })} 
