@@ -332,6 +332,7 @@ export function Hero(props) {
     e.preventDefault();
   };
   const reeree=props.coinDesc
+  console.log(reeree)
 
   return (
     <div>
@@ -349,16 +350,31 @@ export function Hero(props) {
             <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
           </ol>
           <div  className="carousel-inner">
+          <div
+               
+                  className="carousel-item-active"
+                  data-bs-interval="10000"
+                  style={{
+                    backgroundImage: './back.png',
+                    height: "25rem",
+                    backgroundColor: "#777",
+                    color: "white",
+                    position: "relative",
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                    transition: "transform 2s ease, opacity .5s ease-out",
+                  }}
+                ></div>
         {reeree.map((desc) => {
             return (
-              
+               
                 <div
-                key={desc.description}
+                key={desc.id}
                   className="carousel-item"
                   data-bs-interval="10000"
                   style={{
-                    backgroundImage: `${desc.image}`,
-                    height: "25rem",
+                    backgroundImage: {...desc.image.large},
+                    height: "5rem",
                     backgroundColor: "#777",
                     color: "white",
                     position: "relative",
