@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User,Thread } = require('../models');
+const { User,Coin } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
@@ -45,7 +45,10 @@ const resolvers={
           const token = signToken(profile);
           return { token, profile };
         },
-    
+          addData:async(parent,{name,description,links,coinId,images,price,supply,date_added})=>{
+            const coinData=await Coin.insertMany({name,description,links,coinId,images,price,supply,date_added},{new:true})
+            return coinData
+          },
         // Add a third argument to the resolver to access data in our `context`
        
         // Set up mutation so a logged in user can only remove their profile and no one else's
