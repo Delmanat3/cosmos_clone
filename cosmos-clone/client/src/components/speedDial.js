@@ -6,11 +6,15 @@ import ArticleIcon from '@mui/icons-material/Article';
 import AudiotrackIcon from '@mui/icons-material/Audiotrack';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
+import { Hero } from '../pages/home';
+
 const actions = [
+
   { icon: <LinkedInIcon />, name: 'LinkedIn', src:'https://www.linkedin.com/in/nathan-delman-27a9a2139/' },
   { icon: <GitHubIcon />, name: 'Github' ,src:'https://github.com/Delmanat3' },
   { icon: <ArticleIcon />, name: 'Resume' ,src:'https://docs.google.com/document/d/1aXTFFsMv39qBCVWlrqkPwEPozj1nuI_M/edit?usp=sharing&ouid=103290375021955881772&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer' },
   { icon: <AudiotrackIcon />, name: 'Spotify',src:'https://www.linkedin.com/in/nathan-delman-27a9a2139/'  },
+  
 ];
 
 export default function SpeedDialer() {
@@ -22,6 +26,7 @@ export default function SpeedDialer() {
 
   return (
     <div>
+      <Hero/>
       <SpeedDial
         ariaLabel="SpeedDial uncontrolled open example"
         sx={{ position: 'fixed', bottom: 16, right: 16 }}

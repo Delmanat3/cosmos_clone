@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SpeedDialer from './speedDial';
+import SpeedDialer from '../components/speedDial';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import {Home} from './home';
