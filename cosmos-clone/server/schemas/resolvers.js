@@ -45,9 +45,9 @@ const resolvers={
           const token = signToken(profile);
           return { token, profile };
         },
-          addData:async(parent,{name,description,links,coinId,images,price,supply,date_added})=>{
-            const coinData=await Coin.insertMany({name,description,links,coinId,images,price,supply,date_added},{new:true})
-            return coinData
+          addData:async(parent,{coinData})=>{
+            const coinData1=await Coin.create(coinData)
+            return coinData1
           },
         // Add a third argument to the resolver to access data in our `context`
        

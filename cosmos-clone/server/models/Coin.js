@@ -8,14 +8,12 @@ const ObjectId = Schema.Types.ObjectId;
 const coinSchema = new Schema({
 	name: {
 		type: String,
-		required: [true, 'You must provide a title for your thread'],
-		trim: true,
 	},
 	description:{
-		type:String,
+		type:Object,
 	},
 	links:[{
-		type:String,
+		type:Object,
 	}],
 	coinId:{
 		type:String
@@ -24,7 +22,7 @@ const coinSchema = new Schema({
 		type:String,
 	}],
 	price:[{
-		type:String,
+		type:Object,
 	}],
 	supply:{
 		type:String

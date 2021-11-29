@@ -36,11 +36,11 @@ export function Home(props) {
   const [searchInput, setSearchInput] = useState("");
   const [searchedCoins, setSearchedCoins] = useState([]);
   const [coinDesc, setCoinDesc] = useState([]);
-  const [saveCoins] = useMutation(ADD_DATA);
+  const [saveCoins,{error,loading}] = useMutation(ADD_DATA);
   const tickers = [];
   const [searchedBooks, setSearchedBooks] = useState([]);
   const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-  const [saveBook, { error, loading }] = useMutation(SAVE_BOOK);
+  // const [saveBook, { error, loading }] = useMutation(SAVE_BOOK);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
@@ -91,18 +91,18 @@ export function Home(props) {
     const descData = arr1.map((coin) => ({
       price: coin.market_data.current_price,
       supply: coin.market_data.circulating_supply,
-      id: coin.id,
+      coinid: coin.id,
       name:coin.name,
       image: coin.image,
       links: coin.links,
       description: coin?.description ||'no description'
     }));
+    setCoinDesc(descData)
     const fucker=await saveCoins({
-      variables: { savedCoins: { ...descData} },
-
+      variables: { newCoin: { ...descData} },
     })
     console.log(descData)
-     setCoinDesc(descData)
+      
     // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\END 2ND API CALL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   };
 
@@ -143,29 +143,29 @@ export function Home(props) {
     setSearchInput("");
   };
 // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START SAVING COIN TO DB\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-  const handleSaveBook = async (id) => {
-    // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedCoins.find((book) => book.id === id);
-    // get token
-    const token = Auth.loggedIn() ? Auth.getToken() : null;
+  // const handleSaveBook = async (id) => {
+  //   // find the book in `searchedBooks` state by the matching id
+  //   const bookToSave = searchedCoins.find((book) => book.id === id);
+  //   // get token
+  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-    if (!token) {
-      return false;
-    }
-    try {
-      const data = await saveBook({
-        variables: { savedBook: { ...bookToSave } },
-      });
-      if (loading) return "loading...";
-      //const response = await saveBook(bookToSave, token);
-      if (error) return `error ${error.message}`;
+  //   if (!token) {
+  //     return false;
+  //   }
+  //   try {
+  //     const data = await saveBook({
+  //       variables: { savedBook: { ...bookToSave } },
+  //     });
+  //     if (loading) return "loading...";
+  //     //const response = await saveBook(bookToSave, token);
+  //     if (error) return `error ${error.message}`;
 
-      // if book successfully saves to user's account, save book id to state
-      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     // if book successfully saves to user's account, save book id to state
+  //     setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\START NAVBAR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   return (
     <>
@@ -374,10 +374,10 @@ export function Hero(props) {
                     transition: "transform 2s ease, opacity .5s ease-out",
                   }}
                 ></div>
-        {reeree.map((desc) => {
+        {spreader.map((desc) => {
             return (
                 <div
-                key={desc.id}
+                key={desc.name}
                   className="carousel-item"
                   data-bs-interval="10000"
                   style={{
