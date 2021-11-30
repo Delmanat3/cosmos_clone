@@ -1,6 +1,9 @@
 import {MediaQuery} from './pages/mediaQueries'
 import {Home} from './pages/home'
-import { Cards } from './components/CardData';
+import {Login} from './pages/Login'
+import {SignUp} from './pages/signup'
+import  {NavBar}  from './components/NavBar';
+import CoinInfo from './pages/CoinInfo'
 import React from 'react';
 import {
   ApolloClient,
@@ -8,6 +11,8 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
+import { BrowserRouter as Router,Switch, Route } from 'react-router-dom';
+
 
 import { setContext } from '@apollo/client/link/context';
 
@@ -17,7 +22,7 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
+  // get the authentication token from local storage if it existsauthLink.concat(httpLink),
   const token = localStorage.getItem('id_token');
   // return the headers to the context so httpLink can read them
   return {
@@ -29,7 +34,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
+  link: httpLink,
   cache: new InMemoryCache(),
 });
 
@@ -37,15 +42,26 @@ const client = new ApolloClient({
 
 function App() {
   return (
-
-    <div >
       <ApolloProvider client={client}>
-     <Home/>
-     {/* <>
-     <Cards/>
-     </> */}
+        <Router>
+          <>
+            <NavBar/>
+            <Switch>
+              <Route exact path='/' component={Home}/>
+            </Switch>
+              <Route exact path='/login'component={Login} />
+              <Switch>
+              <Route exact path='/signup' component={SignUp}/>
+            </Switch>
+            <Switch>
+              <Route exact path='/coininfo' component={CoinInfo}/>
+            </Switch>
+          </>
+        </Router>
+        
+       
      </ApolloProvider>
-    </div>
+    
   );
 }
 
