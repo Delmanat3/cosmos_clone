@@ -13,7 +13,7 @@ type User {
 }
 
 type Coin{
-coinid:ID!
+
 name:String!
 description:String
 links:[String]
@@ -25,7 +25,7 @@ date_added:String!
 }
 
 input newCoin{
-coinid:ID!
+
 name:String!
 description:String
 links:[String]

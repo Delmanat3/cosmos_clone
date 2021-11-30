@@ -7,6 +7,9 @@ const { signToken } = require('../utils/auth');
 const resolvers={
 
     Query:{
+      coins:async()=>{
+        return Coin.find()
+      },
         users: async ()=>{
             return User.find();
         },

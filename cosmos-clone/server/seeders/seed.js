@@ -40,11 +40,24 @@ db.once('open', async () => {
     const descData = arr1.map((coin) => ({
       price: coin.market_data.current_price.usd,
       supply: coin.market_data.circulating_supply,
-      coinid: coin.id,
+      coinId: coin.id,
       name:coin.name,
       images: coin.image.large,
       links: coin.links.homepage,
-      description: coin.description.en
+      description: coin.description.en,
+      [Symbol.iterator]() {
+        let values = Object.values(this);
+        let index = 0;
+        return {
+          next() {
+            if (index < values.length) {
+              let val = values[index];
+              index++;
+              return { value: val, done: false };
+            } else return { done: true };
+          }
+        };
+      }
     }));
      console.table(descData)
     await Coin.create(descData)
