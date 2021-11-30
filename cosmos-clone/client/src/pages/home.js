@@ -6,8 +6,8 @@ import Box from "@mui/material/Box";
 import { useMutation, useQuery } from "@apollo/client";
 // import Auth from "../utils/auth";
 import { GET_LOAD } from "../utils/queries";
-
-
+import Carousel from 'react-material-ui-carousel'
+import { Paper, Button, Container } from '@mui/material'
 // import { SimpleSearch } from "../utils/API";
 // import { Container } from "@mui/material";
 // import Button from "@mui/material/Button";
@@ -26,88 +26,54 @@ import { GET_LOAD } from "../utils/queries";
 // import { SAVE_BOOK } from "../utils/mutations";
 // import SearchBooks from "../../../../../book_search/client/src/pages/SearchBooks";
 
-
-
-
-export function Home() {
+export function Home(props) {
   const [searchedCoins, setSearchedCoins] = useState([]);
-const {data,error,loading}= useQuery(GET_LOAD)
+  const { data, error, loading } = useQuery(GET_LOAD);
 
-  if(error)
- throw new Error()
-
- if(loading)
- return "loading...."
- const {coins}=data
- console.log(coins)
-
-
-
- 
- console.log(searchedCoins)
-  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
-  //window.addEventListener("load", LoadSeven);
-  //console.log(noodle)
-  const img = "./back.jpg";
-
-// \\\\\\\\\\\\\\\\\\\\\\\\\\\\\START carousel\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+  if (error) throw new Error();
+  if (loading) return "loading....";
+  const { coins } = data;
+  // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\START carousel\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   return (
 <>
-        <div>
-              <Box sx={{ pt: ".5rem" }}>
-        
-                <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
-                  <ol id="thisone" className="carousel">
-                  
-                  </ol>
-                  <div className="carousel-inner">
-                  <div
-                          className="carousel-item active"
-                          id="myChart"
-                          data-bs-interval="100"
-                          style={{
-                            backgroundColor: "#777",
-                            backgroundImage: `url(${img})`,
-                            height: "80vh",
-                            //width:'60vh',
-                            color: "white",
-                            position: "relative",
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            transition: "transform 2s ease, opacity .5s ease-out",
-                          }}
-                        ></div>
-          {coins.map((coin) => {
-            return(
-              
-                        <div
-                        key={coin.name}
-                          className="carousel-item"
-                          data-bs-interval="10000"
-                          style={{
-                            backgroundImage: `url(${coin.images})`,
-                            height: "80vh",
-                            backgroundColor: "#777",
-                            color: "white",
-                            position: "relative",
-                            backgroundPosition: "center",
-                            backgroundSize: "cover",
-                            transition: "transform 2s ease, opacity .5s ease-out",
-                          }}
-                        ></div>
-                        
-            )
-        })}
-                  
-                  </div>
-                </div>
-              </Box>
-            </div>
-            
-          
-        
-    </>
-  );
-  
+<Container maxWidth='md'>
+        <Carousel >
+            {
+                coins.map( (coin, i) => <Item key={i} coin={coin} /> )
+            }
+        </Carousel>
+        </Container>
+ </>
+)
 }
+   const Item=(props)=>{
+     const x=props.coin.images[0]
+     console.log(x)
+     return(
+    <Paper 
+    sx={{pt:'2rem'}}
+    >
+      <Box style={{
+        height:"15rem",
+        backgroundImage:`url(${x})`,
+        backgroundSize:'auto' 
+        }}>
+
+      </Box>
+      <Box 
+      sx={{display:'flex',justifyContent:'center'}}
+      >
+    <h2>{props.coin.name}</h2>
+    {/* <p>{props.coin.description}</p> */}
+ 
+    <Button className="CheckButton">
+        Check it out!
+    </Button>
+    </Box>
+ </Paper>
+      ) }
+
+ 
+  
+   
+
