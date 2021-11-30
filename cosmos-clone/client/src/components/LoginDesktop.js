@@ -6,6 +6,7 @@ import { FormControlLabel } from "@mui/material";
 import { Checkbox } from "@mui/material";
 import { Button } from "@mui/material";
 
+import { Component } from "react";
 
 
 const LogoImg="./assets/img/logo.png"
@@ -50,67 +51,33 @@ export function LoginDesktop(){
         //come back later/////////////////////////
     }   
 return(
-    <MainDiv>
+
         
-        <LoginFormSection>
-            <LogoBox>
-                <img style={{ marginTop:"1rem",
-                     width:"7rem"}} src={LogoImg} alt='wiener'/>
-            </LogoBox>
-            <LoginForm onClick={loginSubmit}>
-            <Typography
-                component='h3'
-                sx={{
-                pt:'3rem',
-                fontSize:'1.5rem',
-                fontFamily:'Montserrat'
-                    }}
-            >
-                Log In Below
-            </Typography>
-        <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{bgcolor:"#56B524", mt: 3, mb: 2 }}
-            >Log In
-            </Button>
-                </LoginForm>
-        </LoginFormSection>
-        <Banner>
-            <Typography
-            component='h1'
-            sx={{fontSize:'2rem',color:'white',fontFamily:'sans-serif',fontWeight:'bold'}}
-            >
-                 A sleek, secure,<br/>
-            and transparent platform...
-            </Typography>
-        </Banner>
-    </MainDiv>   
-)
-}
+            <form>
+                <h3>Sign In</h3>
+
+                <div className="form-group">
+                    <label>Email address</label>
+                    <input type="email" className="form-control" placeholder="Enter email" />
+                </div>
+
+                <div className="form-group">
+                    <label>Password</label>
+                    <input type="password" className="form-control" placeholder="Enter password" />
+                </div>
+
+                <div className="form-group">
+                    <div className="custom-control custom-checkbox">
+                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
+                    </div>
+                </div>
+
+                <button type="submit" className="btn btn-primary btn-block">Submit</button>
+                <p className="forgot-password text-right">
+                    Forgot <a href="#">password?</a>
+                </p>
+            </form>
+        );
+    }
 

@@ -1,8 +1,9 @@
 import {MediaQuery} from './pages/mediaQueries'
 import {Home} from './pages/home'
 import {Login} from './pages/Login'
-
+import {SignUp} from './pages/signup'
 import  {NavBar}  from './components/NavBar';
+import CoinInfo from './pages/CoinInfo'
 import React from 'react';
 import {
   ApolloClient,
@@ -47,10 +48,14 @@ function App() {
             <NavBar/>
             <Switch>
               <Route exact path='/' component={Home}/>
-                
-              
             </Switch>
-              
+              <Route exact path='/login'component={Login} />
+              <Switch>
+              <Route exact path='/signup' component={SignUp}/>
+            </Switch>
+            <Switch>
+              <Route exact path='/coininfo' component={CoinInfo}/>
+            </Switch>
           </>
         </Router>
         

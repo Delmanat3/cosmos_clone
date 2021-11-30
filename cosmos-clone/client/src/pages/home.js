@@ -1,35 +1,29 @@
 import { useState, useEffect } from "react";
 
-// import MenuIcon from "@mui/icons-material/LinkedIn";
-// import { Tab } from "../components/Customs";
-// import { FadeBtn } from "../components/Customs";
 import Box from "@mui/material/Box";
-// import { Paper } from "@mui/material";
-// import Typography from "@mui/material/Typography";
-import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 
+// import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import { useMutation, useQuery } from "@apollo/client";
-import Auth from "../utils/auth";
+// import Auth from "../utils/auth";
 import { GET_LOAD } from "../utils/queries";
 
-// import { Button } from "@mui/material"
-// import  Card from './Cards';
-import { SimpleSearch } from "../utils/API";
-import { Container } from "@mui/material";
-import Button from "@mui/material/Button";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-// import { MediaQuery } from "./mediaQueries";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import ArticleIcon from "@mui/icons-material/Article";
-import AudiotrackIcon from "@mui/icons-material/Audiotrack";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
-import { SAVE_BOOK } from "../utils/mutations";
+// import { SimpleSearch } from "../utils/API";
+// import { Container } from "@mui/material";
+// import Button from "@mui/material/Button";
+// import Card from "@mui/material/Card";
+// import CardActions from "@mui/material/CardActions";
+// import CardContent from "@mui/material/CardContent";
+// import CardMedia from "@mui/material/CardMedia";
+// import Grid from "@mui/material/Grid";
+// import Typography from "@mui/material/Typography";
+// // import { MediaQuery } from "./mediaQueries";
+// import GitHubIcon from "@mui/icons-material/GitHub";
+// import ArticleIcon from "@mui/icons-material/Article";
+// import AudiotrackIcon from "@mui/icons-material/Audiotrack";
+// import LinkedInIcon from "@mui/icons-material/LinkedIn";
+
+// import { SAVE_BOOK } from "../utils/mutations";
 // import SearchBooks from "../../../../../book_search/client/src/pages/SearchBooks";
 
 
@@ -96,20 +90,22 @@ const {data,error,loading}= useQuery(GET_LOAD)
               <Box sx={{ pt: "2rem" }}>
         
                 <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
-                  <ol className="carousel-indicators">
-                    <li
+                  <ol id="thisone" className="carousel">
+                    {/* <li
                       data-bs-target="#myCarousel"
                       data-bs-slide-to="0"
                       className="active"
-                    ></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                      
+                    ></li> */}
+                    {/* <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
                     <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li> */}
                   </ol>
                   <div className="carousel-inner">
                   <div
                           className="carousel-item active"
-                          data-bs-interval="10000"
+                          id="myChart"
+                          data-bs-interval="100"
                           style={{
                             backgroundColor: "#777",
                             backgroundImage: `url(${img})`,
@@ -124,6 +120,7 @@ const {data,error,loading}= useQuery(GET_LOAD)
                         ></div>
           {coins.map((coin) => {
             return(
+              
                         <div
                         key={coin.name}
                           className="carousel-item"
@@ -154,73 +151,69 @@ const {data,error,loading}= useQuery(GET_LOAD)
   );
 }
 // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\CAROUSEL START\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-export function Hero() {
-  const img = "./back.jpg";
+// 
+// export function Hero() {
+  
+//   const carouselBtn = (e) => {
+//     e.preventDefault();
+//   };
+ 
+//   return (
+//     <div>
+//       <Box sx={{ pt: "2rem" }}>
+ 
+//         <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
+//           <ol className="carousel-indicators">
+//             <li
+//               data-bs-target="#myCarousel"
+//               data-bs-slide-to="0"
+//               className="active"
+//             ></li>
+//             <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+//             <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+//             <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
+//           </ol>
+//           <div  className="carousel-inner">
+//           <div
+//                   className="carousel-item active"
+//                   data-bs-interval="10000"
+//                   style={{
+//                     backgroundColor: "#777",
+//                     backgroundImage: `url(${img})`,
+//                     height: "80vh",
+//                     //width:'60vh',
+//                     color: "white",
+//                     position: "relative",
+//                     backgroundPosition: "center",
+//                     backgroundSize: "cover",
+//                     transition: "transform 2s ease, opacity .5s ease-out",
+//                   }}
+//                 ></div>
 
-  console.log(img)
-  const carouselBtn = (e) => {
-    e.preventDefault();
-  };
-  // const reeree=  props.coinDesc
-  // const spreader=[...reeree]
-  // console.log(spreader)
-//const dbData=await 
-  return (
-    <div>
-      <Box sx={{ pt: "2rem" }}>
-
-        <div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
-          <ol className="carousel-indicators">
-            <li
-              data-bs-target="#myCarousel"
-              data-bs-slide-to="0"
-              className="active"
-            ></li>
-            <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
-            <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
-            <li data-bs-target="#myCarousel" data-bs-slide-to="3"></li>
-          </ol>
-          <div  className="carousel-inner">
-          <div
-                  className="carousel-item active"
-                  data-bs-interval="10000"
-                  style={{
-                    backgroundColor: "#777",
-                    backgroundImage: `url(${img})`,
-                    height: "80vh",
-                    //width:'60vh',
-                    color: "white",
-                    position: "relative",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    transition: "transform 2s ease, opacity .5s ease-out",
-                  }}
-                ></div>
-
-                <div
-                  className="carousel-item"
-                  data-bs-interval="10000"
-                  style={{
-                    backgroundImage: `url(${img})`,
-                    height: "80vh",
-                    backgroundColor: "#777",
-                    color: "white",
-                    position: "relative",
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                    transition: "transform 2s ease, opacity .5s ease-out",
-                  }}
-                ></div>
+//                 <div
+//                   className="carousel-item"
+//                   data-bs-interval="10000"
+//                   style={{
+//                     backgroundImage: `url(${img})`,
+//                     height: "80vh",
+//                     backgroundColor: "#777",
+//                     color: "white",
+//                     position: "relative",
+//                     backgroundPosition: "center",
+//                     backgroundSize: "cover",
+//                     transition: "transform 2s ease, opacity .5s ease-out",
+//                   }}
+//                 ></div>
                 
-             {/* )
+//              {/* )
 
-          })}  */}
-          </div>
-        </div>
-      </Box>
-    </div>
-  );
-}
+//           })}  */}
+//           </div>
+//         </div>
+//       </Box>
+//     </div>
+//   );
+//}
  {/* <div
                   className="carousel-item active"
                   data-bs-interval="10000"

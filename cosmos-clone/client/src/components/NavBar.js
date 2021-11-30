@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-
+import Stack from '@mui/material/Stack';
 import { SimpleSearch } from "../utils/API";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import ArticleIcon from "@mui/icons-material/Article";
@@ -8,14 +8,16 @@ import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import { Hero } from "../pages/home";
 import { GET_LOAD } from "../utils/queries";
-
+import SearchModal from "./SearchModal";
+import Button from '@mui/material/Button';
+import { Typography } from "@mui/material";
 
 
 
 export const NavBar=()=>{
     const tickers = [];
     const [searchInput, setSearchInput] = useState("");
- 
+
     const [searchedCoins, setSearchedCoins] = useState([]);
 
 const HandleSearch = async (e) => {
@@ -57,7 +59,24 @@ const HandleSearch = async (e) => {
   
     return(
       <>
+
+      <Typography
+      component="h2"
+      variant="h3"
+      sx={{display:"flex",justifyContent:"center",pb:"1rem"
+    }}
+      >
+        Cosmos Currency
+      </Typography>
+        <Stack
+        sx={{display:'flex',justifyContent:'center'}}
+        direction="row" spacing={2}>
+      <Button>Charts</Button>
+      <Button >Currency</Button>
+      <Button href="#text-buttons">News</Button>
+    </Stack>
     <div>
+    <SearchModal/>
     <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
       <li className="nav-item" role="presentation">
         <button
@@ -144,25 +163,9 @@ const HandleSearch = async (e) => {
           </a>
         </button>
       </li>
-      <li>
-      <form onClick={HandleSearch} className="d-flex">
-              <input
-                name="searchInput"
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form>
-          </li>
         </ul>
-    
-  
-       
-         
+         </div>
+         <div >
          </div>
       </>
     )

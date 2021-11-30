@@ -26,7 +26,7 @@ export default function SpeedDialer() {
 
   return (
     <div>
-      <Hero/>
+      {/* <Hero/> */}
       <SpeedDial
         ariaLabel="SpeedDial uncontrolled open example"
         sx={{ position: 'fixed', bottom: 16, right: 16 }}
