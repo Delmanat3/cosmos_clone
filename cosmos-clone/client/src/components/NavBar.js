@@ -13,49 +13,9 @@ import Button from '@mui/material/Button';
 import { Typography } from "@mui/material";
 
 
-
 export const NavBar=()=>{
-    const tickers = [];
-    const [searchInput, setSearchInput] = useState("");
+ 
 
-    const [searchedCoins, setSearchedCoins] = useState([]);
-
-const HandleSearch = async (e) => {
-    // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START SIMPLE SEARCH CALL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-    e.preventDefault();
-    const loginBody = new FormData(e.currentTarget);
-    const x = loginBody.get("searchInput");
-    setSearchInput(x);
-
-    if (!searchInput) {
-      return false;
-    }
-
-    const response = await SimpleSearch(searchInput);
-
-    if (!response) {
-      throw new Error("BALLS");
-    }
-
-    const { data } = response;
-
-    tickers.push(data);
-
-    console.log(tickers);
-
-    const coinData = tickers.map((coin) => ({
-      price: coin.market_data.current_price,
-      supply: coin.market_data.circulating_supply,
-      id: coin.id,
-      image: coin.image.large,
-      graphData: coin.links,
-      description: coin.description,
-    }));
-
-    console.log(coinData);
-    setSearchedCoins(coinData);
-    setSearchInput("");
-  };
   
     return(
       <>
@@ -63,9 +23,9 @@ const HandleSearch = async (e) => {
       <Typography
       component="h2"
       variant="h3"
-      sx={{display:"flex",justifyContent:"center",pb:"1rem"
+      sx={{display:"flex",justifyContent:"center",pt:"5rem",pb:"5rem"
     }}
-      >
+      ><SearchModal/>
         Cosmos Currency
       </Typography>
         <Stack
@@ -76,7 +36,6 @@ const HandleSearch = async (e) => {
       <Button href="#text-buttons">News</Button>
     </Stack>
     <div>
-    <SearchModal/>
     <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
       <li className="nav-item" role="presentation">
         <button
@@ -141,6 +100,7 @@ const HandleSearch = async (e) => {
           </a>
         </button>
       </li>
+     
       <li className="nav-item" role="presentation">
         <button
           className="nav-link"

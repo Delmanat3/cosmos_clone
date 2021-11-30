@@ -9,6 +9,54 @@ import Typography from '@mui/material/Typography';
 import { TopSeven } from "../utils/API";
 import React, { useState, useEffect } from "react";
 
+<div>
+<Button  onClick={handleClickOpen('paper')}><SearchIcon/></Button>
+<Dialog
+  open={open}
+  onClose={handleClose}
+  scroll={scroll}
+  aria-labelledby="scroll-dialog-title"
+  aria-describedby="scroll-dialog-description"
+>
+    <Box component="form"  onClick={HandleSearch} >
+      <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="searchInput"
+            label="searchcoins"
+            type="searchInput"
+            id="searchInput"
+            autoComplete="searchInput"
+            //onClick={HandleSearch}
+          /> <button type="submit"className="btn btn-primary">Submit</button>
+          </Box>
+    {searchedCoins.map((coin)=>{
+        <div key={coin.id}>
+  <DialogTitle id="scroll-dialog-title">Subscribe</DialogTitle>
+  <DialogContent dividers={scroll === 'paper'}>
+    <DialogContentText
+      id="scroll-dialog-description"
+      ref={descriptionElementRef}
+      tabIndex={-1}
+    >
+    <p >{coin.description}</p>
+    </DialogContentText>
+  </DialogContent>
+  </div>
+          })}
+
+  <DialogActions>
+    <Button onClick={handleClose}>Cancel</Button>
+    <Button onClick={handleClose}>Subscribe</Button>
+  </DialogActions>
+  
+</Dialog>
+
+   
+</div>
+
+
 
 export const Cards=async()=>{
 

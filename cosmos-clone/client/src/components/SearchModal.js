@@ -7,25 +7,67 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState, useEffect } from "react";
 import { SimpleSearch } from "../utils/API";
 import { TextField } from '@mui/material';
-const style = {
-  position: 'fixed',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '80%',
-  height:'80%',
-  borderRadius:'3%',
-  bgcolor: 'white',
-  opacity:'.9',
-  border: '2px solid #000',
-  boxShadow: 50,
-  p: 4,
-};
+import Dialog from '@mui/material/Dialog';
+import MuiDialogActions from '@mui/material/DialogActions';
+import MuiDialogContent from '@mui/material/DialogContent';
+import MuiDialogContentText from '@mui/material/DialogContentText';
+import MuiDialogTitle from '@mui/material/DialogTitle';
+import { withStyles } from "@material-ui/core/styles";
+   
+import IconButton from "@material-ui/core/IconButton";
+// import CloseIcon from "@material-ui/core/IconClose";
+
+const styles = theme => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(3)
+    },
+    closeButton: {
+      position: "absolute",
+      right: theme.spacing(1),
+      top: theme.spacing(2),
+      color: theme.palette.grey[500]
+    }
+  });
+  const DialogTitle = withStyles(styles)(props => {
+    const { children, classes, onClose, ...other } = props;
+    return (
+      <MuiDialogTitle  className={classes.root} {...other}>
+        <Typography variant="p3">{children}</Typography>
+        {onClose ? (
+          <IconButton className={classes.closeButton} onClick={onClose}>
+            <SearchIcon />
+          </IconButton>
+        ) : null}
+      </MuiDialogTitle>
+    );
+  });
+  const DialogContent = withStyles(theme => ({
+    root: {
+      padding: theme.spacing(2)
+    }
+  }))(MuiDialogContent);
+  
+  const DialogActions = withStyles(theme => ({
+    root: {
+      margin: 0,
+      padding: theme.spacing(1)
+    }
+  }))(MuiDialogActions);
+
 
 export default function SearchModal() {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+    const [open, setOpen] = React.useState(false);
+    
+      const handleClickOpen = () => {
+        setOpen(true);
+      };
+      const handleClose = () => {
+        setOpen(false);
+      };
+    
+    
+   
   const tickers = [];
     const [searchInput, setSearchInput] = useState("");
 
@@ -58,47 +100,61 @@ export default function SearchModal() {
           price: coin.market_data.current_price,
           supply: coin.market_data.circulating_supply,
           id: coin.id,
+          name:coin.name,
           image: coin.image.large,
           graphData: coin.links,
+          links:coin.links,
           description: coin.description,
+          priceChange7:coin.market_data.price_change_percentage_7d,
+          priceChange30:coin.market_data.price_change_percentage_30d
+
         }));
     
         console.log(coinData);
         setSearchedCoins(coinData);
         setSearchInput("");
       };
+     
+        
   return (
-    <div>
-      <Button onClick={handleOpen}><SearchIcon/></Button>
-      <Modal
-        keepMounted
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="keep-mounted-modal-title"
-        aria-describedby="keep-mounted-modal-description"
-      >
-        <Box sx={style}>
-          <Typography id="keep-mounted-modal-title" variant="h6" component="h2">
-            Search Coins, Currency Exchange and Markets
-          </Typography>
-          <Box component="form"  onClick={HandleSearch} >
-          <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="searchInput"
-                label="searchcoins"
-                type="searchInput"
-                id="searchInput"
-                autoComplete="searchInput"
-                //onClick={HandleSearch}
-              /> <button type="submit"className="btn btn-primary">Submit</button>
-              </Box>
-          <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-              Filters and options coming soon
-          </Typography>
-        </Box>
-      </Modal>
-    </div>
-  );
+    
+  
+  
+  
+    
+
+        <div>
+          <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+            Open dialog
+          </Button>
+          <Dialog onClose={handleClose} open={open}>
+            <DialogTitle onClose={handleClose}>Modal</DialogTitle>
+            <DialogContent dividers>
+              <Typography gutterBottom>{searchedCoins.name}</Typography>
+              <Box component="form"  onClick={HandleSearch} >
+      <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="searchInput"
+            label="searchcoins"
+            type="searchInput"
+            id="searchInput"
+            autoComplete="searchInput"
+            //onClick={HandleSearch}
+          /> <button type="submit"className="btn btn-primary">Submit</button>
+          </Box>
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleClose} color="primary">
+                ok
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </div>
+     
+
+  )
 }
+
+
