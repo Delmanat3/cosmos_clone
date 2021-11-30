@@ -31,9 +31,11 @@ export const NavBar=()=>{
         <Stack
         sx={{display:'flex',justifyContent:'center'}}
         direction="row" spacing={2}>
-      <Button>Charts</Button>
-      <Button >Currency</Button>
-      <Button href="#text-buttons">News</Button>
+      <Button href="signup">signup</Button>
+      <Button href="login" >login</Button>
+      <Button href="coininfo">coins</Button>
+      <Button href="/">home</Button>
+
     </Stack>
     <div>
     <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
