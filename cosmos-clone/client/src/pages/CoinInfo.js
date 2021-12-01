@@ -17,6 +17,8 @@ import axios from 'axios'
 
 
 const arr1=[]
+const arr2=[]
+const arr3=[]
 function CreateData(name, sparkline, high, low, current, updated) {
 
   return {
@@ -57,37 +59,55 @@ function Row(props) {
   }, []);
   //console.log(post)
 
-for(let i=0;i<post.length; i++){
-const bigName=post[i].name
-const bigSpark=post[i].sparkline_in_7d.price
-const bigHigh=post[i].high_24h
-const bigLow=post[i].low_24h
-const bigCurrent=post[i].current_price
-const bigTime=post[i].last_updated
-const bigCap=post[i].market_cap
-const bigCap24h=post[i].market_cap_change_percentage_24h
+const x= post.map((coin)=>({
+bigName:coin.name,
+bigSpark:coin.sparkline_in_7d.price,
+bigHigh:coin.high_24h,
+bigLow:coin.low_24h,
+bigCurrent:coin.current_price,
+bigTime:coin.last_updated ,
+bigCap:coin.market_cap ,
+ bigCap24h:coin.market_cap_change_percentage_24h,
+}))
+console.log(x)
+
+    //console.log(data);
+    // const bigData={
+    //   name:bigName,
+    //   graphs:bigSpark,
+    //   high:bigHigh,
+    //   low:bigLow,
+    //   current:bigCurrent,
+    //   updated:bigTime    
+    // }
+    //console.log(bigData)
+    //arr1.push(bigData)
+
+  
+// for(let i=0;i<post.length; i++){
 
 
-const bigData={
-  name:bigName,
-  graphs:bigSpark,
-  high:bigHigh,
-  low:bigLow,
-  current:bigCurrent,
-  updated:bigTime    
-}
-arr1.push(bigData)
-//console.log(bigData)
-//setGraphs(bigSpark)
-//console.log(bigSpark)
-// console.log(bigCap24h)
-}
+
+// arr2.push(bigData)
+// arr3.push(bigData.name)
+// //console.log(bigData)
+// //setGraphs(bigSpark)
+// //console.log(bigSpark)
+// // console.log(bigCap24h)
+
+// }
+
+var unique = arr1.reduce(function(unique, arr1) {
+  return unique.indexOf(arr1.category) === -1 ? unique.concat(arr1.category) : unique;
+}, []);
+console.log(unique)
+
 //console.log(arr1)
   return (
     <React.Fragment>
-{arr1.map((row)=>(
+{x.map((row)=>(
 
-      <TableRow key={row.name}sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow key={row.bigName}sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -100,12 +120,12 @@ arr1.push(bigData)
         
         
         <TableCell component="th" scope="row">
-          {row.name}
+          {row.bigName}
         </TableCell>
-        <TableCell align="right">{row.sparkline}</TableCell>
-        <TableCell align="right">{row.high}</TableCell>
-        <TableCell align="right">{row.low}</TableCell>
-        <TableCell align="right">{row.current}</TableCell>
+        <TableCell align="center">{row.bigSpark}</TableCell>
+        <TableCell align="center">{row.bigHigh}</TableCell>
+        <TableCell align="center">{row.bigLow}</TableCell>
+        <TableCell align="center">{row.bigCurrent}</TableCell>
       </TableRow>
       ))}
       <TableRow>
