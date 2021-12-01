@@ -58,15 +58,23 @@ function Row(props) {
   //console.log(post)
 
 for(let i=0;i<post.length; i++){
-  const bigData={
- bigName:post[i].name,
- bigSpark:post[i].sparkline_in_7d.price,
- bigHigh:post[i].high_24h,
- bigLow:post[i].low_24h,
-bigCurrent:post[i].current_price,
- bigTime:post[i].last_updated,
- bigCap:post[i].market_cap,
- bigCap24h:post[i].market_cap_change_percentage_24h    
+const bigName=post[i].name
+const bigSpark=post[i].sparkline_in_7d.price
+const bigHigh=post[i].high_24h
+const bigLow=post[i].low_24h
+const bigCurrent=post[i].current_price
+const bigTime=post[i].last_updated
+const bigCap=post[i].market_cap
+const bigCap24h=post[i].market_cap_change_percentage_24h
+
+
+const bigData={
+  name:bigName,
+  graphs:bigSpark,
+  high:bigHigh,
+  low:bigLow,
+  current:bigCurrent,
+  updated:bigTime    
 }
 arr1.push(bigData)
 //console.log(bigData)
@@ -79,7 +87,7 @@ arr1.push(bigData)
     <React.Fragment>
 {arr1.map((row)=>(
 
-      <TableRow key={row.bigCap}sx={{ '& > *': { borderBottom: 'unset' } }}>
+      <TableRow key={row.name}sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
