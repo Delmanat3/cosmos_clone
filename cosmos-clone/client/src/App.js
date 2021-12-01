@@ -56,6 +56,7 @@ function App() {
             <Switch>
               <Route exact path='/coininfo' component={CoinInfo}/>
             </Switch>
+            
           </>
         </Router>
         

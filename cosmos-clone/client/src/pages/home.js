@@ -22,7 +22,7 @@ import { Paper, Button, Container } from '@mui/material'
 // import ArticleIcon from "@mui/icons-material/Article";
 // import AudiotrackIcon from "@mui/icons-material/Audiotrack";
 // import LinkedInIcon from "@mui/icons-material/LinkedIn";
-
+import { Cards } from "../components/CardData";
 // import { SAVE_BOOK } from "../utils/mutations";
 // import SearchBooks from "../../../../../book_search/client/src/pages/SearchBooks";
 
@@ -50,6 +50,7 @@ export function Home(props) {
      const x=props.coin.images[0]
      console.log(x)
      return(
+       <>
     <Paper 
     sx={{pt:'2rem'}}
     >
@@ -71,7 +72,9 @@ export function Home(props) {
     </Button>
     </Box>
  </Paper>
-      ) }
+<Cards/>
+ </>
+) }
 
  
   

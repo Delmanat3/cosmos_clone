@@ -1,121 +1,167 @@
-// const [saveCoins,{error,loading}] = useMutation(ADD_DATA);
+import React from 'react';
+import styled from 'styled-components';
+import Box from '@material-ui/core/Box';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Edit from '@material-ui/icons/Edit';
+import {
+  makeStyles,
+  createMuiTheme,
+  responsiveFontSizes,
+} from '@material-ui/core/styles';
+import Layout, {
+  Root,
+  getHeader,
+  getContent,
+  getFullscreen,
+  getDrawerSidebar,
+  getInsetContainer,
+  getInsetSidebar,
+  getInsetFooter,
+} from '@mui-treasury/layout';
+import {
+  MessengerSearch,
+  ChatsHeader,
+  ChatList,
+  ConversationHead,
+  ChatSettings,
+  ChatBar,
+  ChatDialog,
+} from '@mui-treasury/mockup/brands/messenger';
 
-// import { TopSeven } from "../utils/API";
+const Header = getHeader(styled);
+const Content = getContent(styled);
+const Fullscreen = getFullscreen(styled);
+const DrawerSidebar = getDrawerSidebar(styled);
+const InsetSidebar = getInsetSidebar(styled);
+const InsetFooter = getInsetFooter(styled);
+const InsetContainer = getInsetContainer(styled);
 
-// const [coinDesc, setCoinDesc] = useState([]);
+const useStyles = makeStyles(() => ({
+  header: {
+    boxShadow: '0 1px 2px 0 rgba(0, 0, 0, .10)',
+    backgroundColor: '#ffffff',
+  },
+  insetBody: {
+    borderLeft: '1px solid rgba(0, 0, 0, 0.08)',
+    overflowY: 'auto',
+    backgroundColor: '#fff',
+  },
+  edit: {
+    backgroundColor: 'rgba(0,0,0,0.04)',
+  },
+}));
 
-// useEffect(() => {
-//     window.addEventListener("load", handleLoad);
-//     return () => window.removeEventListener("load", handleLoad);
-//   });
-//   useEffect(() => {
-//     window.addEventListener("load", handleLoad);
-//     return () => window.removeEventListener("load", handleLoad);
-//   });
-const ctx = document.getElementById(`${coin.price}`);
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1
-        }]
+const theme = responsiveFontSizes(
+  createMuiTheme({
+    palette: {
+      primary: {
+        main: 'rgb(0, 153, 255)',
+      },
+      background: {
+        default: '#fff',
+      },
     },
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-// const handleLoad = async () => {
-//     const handleTop = await TopSeven();
-//     const coinArray = [];
-//     const arr1=[];
-//     const { data } = handleTop;
+    typography: {
+      fontFamily:
+        '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+      body1: {
+        fontSize: `${15 / 16}rem`,
+      },
+    },
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          'strong, b': {
+            fontWeight: 'bold',
+          },
+        },
+      },
+    },
+  })
+);
 
-//     const { coins } = data;
-//     //console.log(data);
-//     const x = coins;
-//     //coinArray.push(x)
-//     // console.log(x);
-//     // console.log(coinArray);
+const DmDaddy = () => {
+  const styles = useStyles();
+  const scheme = Layout();
+  scheme.configureHeader(builder => {
+    builder.create('appHeader').registerConfig('xs', {
+      position: 'relative',
+      initialHeight: 60,
+    });
+  });
+  scheme.configureEdgeSidebar(builder => {
+    builder
+      .create('primarySidebar', { anchor: 'left' })
+      .registerPermanentConfig('xs', {
+        width: '25%',
+        collapsible: true,
+        collapsedWidth: 80,
+      });
+  });
+  scheme.enableAutoCollapse('primarySidebar', 'sm');
+  scheme.configureInsetSidebar(builder => {
+    builder
+      .create('secondarySidebar', { anchor: 'right' })
+      .registerAbsoluteConfig('sm', {
+        width: '33%',
+      });
+  });
+  return (
+    <Fullscreen>
+      <Root theme={theme} scheme={scheme}>
+        {({ state: { sidebar } }) => (
+          <>
+            <CssBaseline />
+            <Header className={styles.header}>
+              <Toolbar disableGutters>
+                <ConversationHead />
+              </Toolbar>
+            </Header>
+            <DrawerSidebar sidebarId={'primarySidebar'}>
+              {sidebar.primarySidebar.collapsed ? (
+                <Box textAlign={'center'} my={1}>
+                  <IconButton className={styles.edit}>
+                    <Edit />
+                  </IconButton>
+                </Box>
+              ) : (
+                <>
+                  <ChatsHeader />
+                  <Box p={'4px 16px 12px'}>
+                    <MessengerSearch />
+                  </Box>
+                </>
+              )}
+              <ChatList concise={sidebar.primarySidebar.collapsed} />
+            </DrawerSidebar>
+            <Content>
+              <InsetContainer
+                disableGutters
+                rightSidebar={
+                  <InsetSidebar
+                    sidebarId={'secondarySidebar'}
+                    classes={{ paper: styles.insetBody }}
+                  >
+                    <ChatSettings />
+                  </InsetSidebar>
+                }
+              >
+                <ChatDialog />
+              </InsetContainer>
+            </Content>
+            <InsetFooter ContainerProps={{ disableGutters: true }}>
+              <Box display={'flex'} alignItems={'center'} p={1}>
+                <ChatBar concise={sidebar.primarySidebar.collapsed} />
+              </Box>
+            </InsetFooter>
+          </>
+        )}
+      </Root>
+    </Fullscreen>
+  );
+};
 
-//     const coinData = x.map((coin) => ({
-//       name: coin.item.name,
-//       id: coin.item.id,
-//       image: coin.item.large,
-//       graphData: coin.item.market_cap_rank,
-//     }));
-//     console.log(coinData);
-//     setSearchedBooks(coinData);
-  
-//     const coinsId=coinData
-//     //console.log(coinsId)
-//     // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\START 2ND API FROM IDS IN TOPSEVEN
-//     for(let i=0; i < coinsId.length; i++){
-//       const dataLength=coinsId[i].id
-//       //console.log(dataLength)
-//       const response =await SimpleSearch(dataLength)
-//       const resData=response.data
-//       arr1.push(resData)
-//       console.log(arr1)
-//     }
-//     const descData = arr1.map((coin) => ({
-//       price: coin.market_data.current_price,
-//       supply: coin.market_data.circulating_supply,
-//       coinid: coin.id,
-//       name:coin.name,
-//       image: coin.image,
-//       links: coin.links,
-//       description: coin?.description ||'no description'
-//     }));
-//     setCoinDesc(descData)
-//     const fucker=await saveCoins({
-//       variables: { newCoin: { ...descData} },
-//     })
-//     console.log(descData)
-      // const handleSaveBook = async (id) => {
-  //   // find the book in `searchedBooks` state by the matching id
-  //   const bookToSave = searchedCoins.find((book) => book.id === id);
-  //   // get token
-  //   const token = Auth.loggedIn() ? Auth.getToken() : null;
 
-  //   if (!token) {
-  //     return false;
-  //   }
-  //   try {
-  //     const data = await saveBook({
-  //       variables: { savedBook: { ...bookToSave } },
-  //     });
-  //     if (loading) return "loading...";
-  //     //const response = await saveBook(bookToSave, token);
-  //     if (error) return `error ${error.message}`;
-
-  //     // if book successfully saves to user's account, save book id to state
-  //     setSavedBookIds([...savedBookIds, bookToSave.bookId]);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-//     // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\END 2ND API CALL\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-//   };
+export default DmDaddy;

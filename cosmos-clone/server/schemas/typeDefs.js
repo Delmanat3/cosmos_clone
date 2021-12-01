@@ -11,6 +11,13 @@ type User {
     pic:String
     bio:String
 }
+type Graph{
+    name:String!
+    sparkline:[String]!
+    high:[String]
+    low:String
+
+}
 
 type Coin{
 

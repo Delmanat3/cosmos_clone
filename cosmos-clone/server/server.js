@@ -13,7 +13,9 @@ const app = express();
 
 // IF ANYONE WANTS TO HELP MOST OF THE WORK IS IN HOME.JS IN SRC 
 
-
+// const GraphData=async(query)=>{
+// 	return await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=binancecoin&order=market_cap_desc&per_page=100&page=1&sparkline=true")
+//   }
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
