@@ -84,7 +84,7 @@ export default function SearchModal() {
     const response = await SimpleSearch(searchInput);
 
     if (!response) {
-      throw new Error("BALLS");
+        throw new Error    
     }
 
     const { data } = response;
@@ -99,7 +99,7 @@ export default function SearchModal() {
       id: coin.id,
       name: coin.name,
       image: coin.image.large,
-      graphData: coin.links,
+      graphData: coin.market_data.sparkline_7d.price,
       links: coin.links,
       description: coin.description,
       priceChange7: coin.market_data.price_change_percentage_7d,
@@ -118,7 +118,7 @@ export default function SearchModal() {
       </Button>
       <Dialog fullScreen onClose={handleClose} open={open}>
         <DialogTitle onClose={handleClose}>
-          Search Coins Exchanges and Stocks
+          Search Coins Exchanges and Stocks <small>click twice idfk</small>
         </DialogTitle>
         <DialogContent dividers>
           <Box component="form" onClick={HandleSearch}>
@@ -130,7 +130,7 @@ export default function SearchModal() {
               label="Search your favorite coins"
               type="searchInput"
               id="searchInput"
-              autoComplete="searchInput"
+              autoComplete="search"
               //onClick={HandleSearch}
             />
             <button type="submit" className="btn btn-primary">
@@ -142,8 +142,16 @@ export default function SearchModal() {
             <DialogContentText key={coin.id}>
               {coin.name}
               <br />
-              {coin.description.en}
+              <br/>
+              <p> PRICE IN USD<br/>{coin.price.usd}</p>
+              <p> CIRCULATING SUPPLY<br/> {coin.supply}</p>
+              <p>COIN HISTORY<br/>{coin.description.en}</p>
+              
+           
+ 
             </DialogContentText>
+            
+
           ))}
         </DialogContent>
         <DialogActions>

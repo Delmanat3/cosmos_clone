@@ -1,8 +1,8 @@
 import * as React from 'react';
-import SpeedDialer from '../components/speedDial';
+import SpeedDialer from './speedDial';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import {Home} from './home';
+import {Home} from '../pages/home';
 export function MediaQuery(){
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
   
