@@ -1,64 +1,185 @@
-import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
-import { styled } from '@mui/system';
-import Stack from '@mui/material/Stack'
+// import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
+// import { styled } from '@mui/system';
+// import Stack from '@mui/material/Stack'
 
-const CustomButtonRoot = styled('button')`
-  background-color: #BF8F8F;
-  padding: 15px 20px;
-  border-radius: 10px;
-  color: #fff;
-  font-weight: 600;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  transition: all 200ms ease;
-  cursor: pointer;
-  box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 0 rgba(0, 127, 255, 0);
-  border: none;
 
-  &:hover {
-    background-color: #0059b2;
-  }
 
-  &.${buttonUnstyledClasses.active} {
-    background-color: #004386;
-  }
 
-  &.${buttonUnstyledClasses.focusVisible} {
-    box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
-    outline: none;
-  }
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Header from './Header';
+import MainFeaturedPost from './MainFeaturedPost';
+import FeaturedPost from './FeaturedPost';
+import Main from './Main';
+import Sidebar from './Sidebar';
+import Footer from './Footer';
+import post1 from './blog-post.1.md';
+import post2 from './blog-post.2.md';
+import post3 from './blog-post.3.md';
 
-  &.${buttonUnstyledClasses.disabled} {
-    opacity: 0.5;
-    cursor: not-allowed;
-    box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
-  }
-`;
+const sections = [
+  { title: 'Technology', url: '#' },
+  { title: 'Design', url: '#' },
+  { title: 'Culture', url: '#' },
+  { title: 'Business', url: '#' },
+  { title: 'Politics', url: '#' },
+  { title: 'Opinion', url: '#' },
+  { title: 'Science', url: '#' },
+  { title: 'Health', url: '#' },
+  { title: 'Style', url: '#' },
+  { title: 'Travel', url: '#' },
+];
 
-function CustomButton(props) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
-}
+const mainFeaturedPost = {
+  title: 'Title of a longer featured blog post',
+  description:
+    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+  image: 'https://source.unsplash.com/random',
+  imageText: 'main image description',
+  linkText: 'Continue reading…',
+};
 
-export function FadeBtn() {
+const featuredPosts = [
+  {
+    title: 'Featured post',
+    date: 'Nov 12',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageLabel: 'Image Text',
+  },
+  {
+    title: 'Post title',
+    date: 'Nov 11',
+    description:
+      'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    image: 'https://source.unsplash.com/random',
+    imageLabel: 'Image Text',
+  },
+];
+
+const posts = [post1, post2, post3];
+
+const sidebar = {
+  title: 'About',
+  description:
+    'Etiam porta sem malesuada magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.',
+  archives: [
+    { title: 'March 2020', url: '#' },
+    { title: 'February 2020', url: '#' },
+    { title: 'January 2020', url: '#' },
+    { title: 'November 1999', url: '#' },
+    { title: 'October 1999', url: '#' },
+    { title: 'September 1999', url: '#' },
+    { title: 'August 1999', url: '#' },
+    { title: 'July 1999', url: '#' },
+    { title: 'June 1999', url: '#' },
+    { title: 'May 1999', url: '#' },
+    { title: 'April 1999', url: '#' },
+  ],
+  social: [
+    { name: 'GitHub', icon: GitHubIcon },
+    { name: 'Twitter', icon: TwitterIcon },
+    { name: 'Facebook', icon: FacebookIcon },
+  ],
+};
+
+const theme = createTheme();
+
+export default function Customs() {
   return (
-    <Stack spacing={2} direction="row">
-      <CustomButton>Open Cactus</CustomButton>
-    </Stack>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Container maxWidth="lg">
+        <Header title="Blog" sections={sections} />
+        <main>
+          <MainFeaturedPost post={mainFeaturedPost} />
+          <Grid container spacing={4}>
+            {featuredPosts.map((post) => (
+              <FeaturedPost key={post.title} post={post} />
+            ))}
+          </Grid>
+          <Grid container spacing={5} sx={{ mt: 3 }}>
+            <Main title="From the firehose" posts={posts} />
+            <Sidebar
+              title={sidebar.title}
+              description={sidebar.description}
+              archives={sidebar.archives}
+              social={sidebar.social}
+            />
+          </Grid>
+        </main>
+      </Container>
+      <Footer
+        title="Footer"
+        description="Something here to give the footer a purpose!"
+      />
+    </ThemeProvider>
   );
 }
-export const Tab = styled('button')`
-  padding: 10px 30px;
-  cursor: pointer;
-  opacity: 0.6;
-  background: white;
-  border: 0;
-  outline: 0;
-  border-bottom: 2px solid transparent;
-  transition: ease border-bottom 250ms;
-  ${({ active }) =>
-    active &&
-    `
-    border-bottom: 2px solid black;
-    opacity: 1;
-  `}
-`;
+// const CustomButtonRoot = styled('button')`
+//   background-color: #BF8F8F;
+//   padding: 15px 20px;
+//   border-radius: 10px;
+//   color: #fff;
+//   font-weight: 600;
+//   font-family: Helvetica, Arial, sans-serif;
+//   font-size: 14px;
+//   transition: all 200ms ease;
+//   cursor: pointer;
+//   box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 0 rgba(0, 127, 255, 0);
+//   border: none;
+
+//   &:hover {
+//     background-color: #0059b2;
+//   }
+
+//   &.${buttonUnstyledClasses.active} {
+//     background-color: #004386;
+//   }
+
+//   &.${buttonUnstyledClasses.focusVisible} {
+//     box-shadow: 0 4px 20px 0 rgba(61, 71, 82, 0.1), 0 0 0 5px rgba(0, 127, 255, 0.5);
+//     outline: none;
+//   }
+
+//   &.${buttonUnstyledClasses.disabled} {
+//     opacity: 0.5;
+//     cursor: not-allowed;
+//     box-shadow: 0 0 0 0 rgba(0, 127, 255, 0);
+//   }
+// `;
+
+// function CustomButton(props) {
+//   return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
+// }
+
+// export function FadeBtn() {
+//   return (
+//     <Stack spacing={2} direction="row">
+//       <CustomButton>Open Cactus</CustomButton>
+//     </Stack>
+//   );
+// }
+// export const Tab = styled('button')`
+//   padding: 10px 30px;
+//   cursor: pointer;
+//   opacity: 0.6;
+//   background: white;
+//   border: 0;
+//   outline: 0;
+//   border-bottom: 2px solid transparent;
+//   transition: ease border-bottom 250ms;
+//   ${({ active }) =>
+//     active &&
+//     `
+//     border-bottom: 2px solid black;
+//     opacity: 1;
+//   `}
+// `;
