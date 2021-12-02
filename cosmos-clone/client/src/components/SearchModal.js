@@ -99,7 +99,7 @@ export default function SearchModal() {
       id: coin.id,
       name: coin.name,
       image: coin.image.large,
-      graphData: coin.links,
+      graphData: coin.market_data.sparkline_7d.price,
       links: coin.links,
       description: coin.description,
       priceChange7: coin.market_data.price_change_percentage_7d,
@@ -142,8 +142,15 @@ export default function SearchModal() {
             <DialogContentText key={coin.id}>
               {coin.name}
               <br />
-              {coin.description.en}
+              <br/>
+              <p>COIN HISTORY<br/>{coin.description.en}</p>
+              <br/>
+             <p> PRICE IN USD  {coin.price.usd}</p>
+              <p> CIRCULATING SUPPLY {coin.supply}</p>
+ 
             </DialogContentText>
+            
+
           ))}
         </DialogContent>
         <DialogActions>

@@ -11,18 +11,32 @@ import React, { useState, useEffect } from "react";
 import { SimpleSearch } from "../utils/API";
 import { useMutation } from "@apollo/client";
 
+const { default: axios } = require('axios');
+
 
 export const Cards=()=>{
-  
 
-    
-  
+
+  const [news,setNews]=React.useState([])
+
+window.addEventListener('DOMContentLoaded',
+()=>{
+  const baseURL=`https://newsapi.org/v2/everything?q=crypto&apiKey=20023ca9001f4ecbbdf2f3128afaefd1`
+  axios.get(baseURL).then((response) => {
+    const newNews=response.data
+    const art=newNews.articles
+    console.log(art)
+    setNews(art)
+  });
+}
+)
+
+
+
 //     console.log(x)
 // if (error) throw new Error();
 
-    
-  
-
+    //20023ca9001f4ecbbdf2f3128afaefd1
 
 
 return(
@@ -30,8 +44,8 @@ return(
 
             {/* End hero unit */}
             <Grid container spacing={3}>
-            {/* {searchedBooks.map((coin) => {
-                return( */}
+            {news.map((coin) => {
+                return(
         <Grid item   xs={12} sm={6} md={4}>
         <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardMedia
@@ -58,9 +72,9 @@ return(
     </Card>
  
     </Grid>
-{/* )
+ )
             
-       })} */}
+       })} 
     </Grid>
     </Container>
         

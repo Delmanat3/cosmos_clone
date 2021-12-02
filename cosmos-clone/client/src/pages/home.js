@@ -62,7 +62,10 @@ export function Home(props) {
 
       </Box>
       <Box 
-      sx={{display:'flex',justifyContent:'center'}}
+      sx={{
+        display:'flex',
+        justifyContent:'center'
+    }}
       >
     <h2>{props.coin.name}</h2>
     {/* <p>{props.coin.description}</p> */}
