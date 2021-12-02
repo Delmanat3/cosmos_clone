@@ -1,4 +1,4 @@
-import {MediaQuery} from './components/mediaQueries'
+import Customs from './components/Customs'
 import {Home} from './pages/home'
 import {Login} from './pages/Login'
 import {SignUp} from './pages/signup'
@@ -61,6 +61,9 @@ function App() {
             </Switch>
             <Switch>
               <Route exact path='/coins' component={Coins}/>
+            </Switch>
+            <Switch>
+              <Route exact path='/coins' component={Customs}/>
             </Switch>
           </>
         </Router>

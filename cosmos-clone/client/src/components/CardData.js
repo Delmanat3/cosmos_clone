@@ -21,7 +21,7 @@ export const Cards=()=>{
 
 window.addEventListener('DOMContentLoaded',
 ()=>{
-  const baseURL=`https://newsapi.org/v2/everything?q=crypto&apiKey=20023ca9001f4ecbbdf2f3128afaefd1`
+  const baseURL=`https://newsap.org/v2/everything?q=crypto&apiKey=20023ca9001f4ecbbdf2f3128afaefd1`
   axios.get(baseURL).then((response) => {
     const newNews=response.data
     const art=newNews.articles
