@@ -71,6 +71,9 @@ export function Login() {
     const loginBody = new FormData(e.currentTarget);
     console.log(loginBody.get("email"));
     console.log(loginBody.get("password"));
+    setTimeout(() => {
+      window.location.assign('/');
+    }, 3000);
     //come back later/////////////////////////
   };
 

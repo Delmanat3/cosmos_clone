@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import Box from "@mui/material/Box";
-
+import { NavBar } from "../components/NavBar";
 // import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 import { useMutation, useQuery } from "@apollo/client";
 // import Auth from "../utils/auth";
@@ -35,7 +35,10 @@ export function Home(props) {
   const { coins } = data;
   // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\START carousel\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   return (
+    <>
 <>
+<NavBar/>
+</>
 <Container maxWidth='md'>
         <Carousel >
             {
@@ -77,6 +80,7 @@ export function Home(props) {
  </Paper>
 <Cards/>
  </>
+
 ) }
 
  

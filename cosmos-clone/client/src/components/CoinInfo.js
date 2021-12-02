@@ -1,4 +1,6 @@
 import * as React from "react";
+import Popover from '@mui/material/Popover';
+import Typography from '@mui/material/Typography';
 // import PropTypes from "prop-types";
 // import Box from "@mui/material/Box";
 // import Collapse from "@mui/material/Collapse";
@@ -13,6 +15,7 @@ import * as React from "react";
 // import Paper from "@mui/material/Paper";
 // import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 // import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
 import axios from "axios";
 // import Rating from "@mui/material/Rating";
 //import { useDemoData } from '@mui/x-data-grid-generator';
@@ -28,6 +31,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { createTheme } from "@mui/material/styles";
 import { createStyles, makeStyles } from "@mui/styles";
 import { GridToolbar } from "@mui/x-data-grid";
+import { Container } from "@mui/material";
+import { NavBar } from "./NavBar";
 
 const columns = [
   { field: "name", headerName: "name", width: 90 },
@@ -70,6 +75,22 @@ function Row(props) {
   // const [open, setOpen] = React.useState(false);
   const [post, setPost] = React.useState([]);
   // const [graphs,setGraphs]=React.useState([])
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [value, setValue] = React.useState('');
+
+  const handlePopoverOpen = (event) => {
+    const field = event.currentTarget.dataset.field;
+    const id = event.currentTarget.parentElement.dataset.id;
+    const row = x.find((r) => r.id === id);
+    setValue(row[field]);
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
 
   const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&updated_change_percentage=24h%2C7d`;
   React.useEffect(() => {
@@ -90,9 +111,14 @@ function Row(props) {
     bigCap: coin.market_cap,
     bigCap24h: coin.market_cap_change_percentage_24h,
   }));
-  console.log(x);
 
   return (
+<>
+<>
+      <NavBar/>
+</>
+
+    <Container sx={{pt:'10rem',display:'flex',justifyContent:'center'}}>
     <div style={{ height: 600, width: "80%" }}>
       <DataGrid
         rows={x}
@@ -102,8 +128,35 @@ function Row(props) {
         components={{
           Toolbar: GridToolbar,
         }}
+        componentsProps={{
+          cell: {
+            onMouseEnter: handlePopoverOpen,
+            onMouseLeave: handlePopoverClose,
+          },
+        }}
       />
+      <Popover
+        sx={{
+          pointerEvents: 'none',
+        }}
+        open={open}
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <Typography sx={{ p: 1 }}>{`${value}`}</Typography>
+      </Popover>
     </div>
+    </Container>
+    </>
   );
 }
 

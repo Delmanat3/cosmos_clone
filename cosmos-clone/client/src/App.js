@@ -12,7 +12,7 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { BrowserRouter as Router,Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router,Switch, Route ,useLocation } from 'react-router-dom';
 
 
 import { setContext } from '@apollo/client/link/context';
@@ -41,12 +41,13 @@ const client = new ApolloClient({
 
 
 
-function App() {
+function App(props) {
   return (
       <ApolloProvider client={client}>
         <Router>
           <>
-            <NavBar/>
+         
+          
             <Switch>
               <Route exact path='/' component={Home}/>
             </Switch>
