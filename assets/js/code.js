@@ -226,7 +226,6 @@ $.ajax({
   url: geckoEx,
   method: "GET",
 }).then(function (response) {
-  //console.log('EXCHANGE RATES \n-------------');
   const resDataRates = response.rates;
   exchangeRates.push(resDataRates);
 });
