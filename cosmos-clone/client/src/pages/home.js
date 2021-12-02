@@ -7,7 +7,9 @@ import { useMutation, useQuery } from "@apollo/client";
 // import Auth from "../utils/auth";
 import { GET_LOAD } from "../utils/queries";
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button, Container } from '@mui/material'
+import { Paper, Button, Container, Typography } from '@mui/material'
+import Marquee from "react-fast-marquee";
+
 // import { SimpleSearch } from "../utils/API";
 // import { Container } from "@mui/material";
 // import Button from "@mui/material/Button";
@@ -26,18 +28,26 @@ import { Cards } from "../components/CardData";
 // import { SAVE_BOOK } from "../utils/mutations";
 // import SearchBooks from "../../../../../book_search/client/src/pages/SearchBooks";
 
-export function Home(props) {
+export function Home() {
   const [searchedCoins, setSearchedCoins] = useState([]);
   const { data, error, loading } = useQuery(GET_LOAD);
 
   if (error) throw new Error();
   if (loading) return "loading....";
   const { coins } = data;
+  console.log(coins)
   // \\\\\\\\\\\\\\\\\\\\\\\\\\\\\START carousel\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
   return (
     <>
 <>
 <NavBar/>
+</>
+<>
+<Marquee>
+{
+coins.map( (coin, i) => <Typography key={i} component='p' variant="p2" > {coin.name}  {coin.supply} </Typography> )
+            }
+</Marquee>
 </>
 <Container maxWidth='md'>
         <Carousel >

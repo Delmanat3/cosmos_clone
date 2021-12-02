@@ -11,7 +11,7 @@ import { GET_LOAD } from "../utils/queries";
 import SearchModal from "./SearchModal";
 import Button from "@mui/material/Button";
 import { Typography } from "@mui/material";
-
+import Marquee from "react-fast-marquee";
 export const NavBar = () => {
   return (
     <>
@@ -38,6 +38,7 @@ export const NavBar = () => {
         <Button href="coininfo">coins</Button>
         <Button href="/">home</Button>
       </Stack>
+      {/* <Marquee> */}
       <div>
         <ul className="nav nav-pills nav-justified" id="myTab" role="tablist">
           <li className="nav-item" role="presentation">
@@ -128,7 +129,7 @@ export const NavBar = () => {
           </li>
         </ul>
       </div>
-     
+      {/* </Marquee> */}
     </>
   );
 };

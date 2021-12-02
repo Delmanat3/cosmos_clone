@@ -47,6 +47,7 @@ db.once('open', async () => {
       name: coin.item.name,
       id: coin.item.id,
       image: coin.item.large,
+      thumb:coin.item.thumb,
       market_rank: coin.item.market_cap_rank,
     }));
 

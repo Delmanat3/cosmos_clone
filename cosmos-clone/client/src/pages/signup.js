@@ -19,6 +19,12 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Login } from "./Login";
+
+
+import { useMutation } from '@apollo/client';
+import { ADD_USER } from '../utils/mutations';
+
+import Auth from '../utils/auth';
 export function MediaQuery(){
     const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
   
@@ -73,35 +79,50 @@ const LogoImg="./assets/img/logo.png"
    maxWidth:"30rem"  
 }
 )
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const theme = createTheme();
-export function SignUp(){
 
-    const loginSubmit=(e)=>{
+
+export function SignUp(){
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [addUser, { error, data }] = useMutation(ADD_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+    const loginSubmit=async(e)=>{
         e.preventDefault();
-        const loginBody = new FormData(e.currentTarget)
-        console.log(loginBody.get('name'))
-        console.log(loginBody.get('email'))
-        console.log(loginBody.get('password'))
-        console.log(loginBody.get('repeatPassword'))
-        return <Redirect to="/"/>
+        console.log(formState);
+
+        try {
+          const { data } = await addUser({
+            variables: { ...formState },
+          });
+    
+          Auth.login(data.addUser.token);
+        } catch (e) {
+          console.error(e);
+        }
+        // const loginBody = new FormData(e.currentTarget)
+        // console.log(loginBody.get('name'))
+        // console.log(loginBody.get('email'))
+        // console.log(loginBody.get('password'))
+        // console.log(loginBody.get('repeatPassword'))
+        // return <Redirect to="/"/>
 
     }   
 
-return(
-<ThemeProvider theme={theme}>
+return(  
+ <ThemeProvider theme={theme}>
       <Grid container component="main" sx={{ height: '100vh' }}>
         <CssBaseline />
         <Grid
@@ -144,6 +165,8 @@ return(
                 name="name"
                 autoComplete="name"
                 autoFocus
+                 value={formState.name}
+                  onChange={handleChange}
               />
                  <TextField
                 margin="normal"
@@ -154,6 +177,8 @@ return(
                 name="email"
                 autoComplete="email"
                 autoFocus
+                 value={formState.email}
+                  onChange={handleChange}
               />
               <TextField
                 margin="normal"
@@ -164,6 +189,8 @@ return(
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                 value={formState.password}
+                  onChange={handleChange}
               />
                <TextField
                 margin="normal"
@@ -203,5 +230,7 @@ return(
           </Box>
         </Grid>
         </Grid>
-        </ThemeProvider>
-)}
+        </ThemeProvider> 
+)
+}
+

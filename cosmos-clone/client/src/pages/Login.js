@@ -16,6 +16,10 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../utils/mutations'
+import Auth from '../utils/auth';
+
 
 export function MediaQuery() {
   const [isDesktop, setDesktop] = useState(window.innerWidth > 1450);
@@ -25,7 +29,7 @@ export function MediaQuery() {
   };
   useEffect(() => {
     window.addEventListener("resize", updateMedia);
-    return () => window.addEventListener("resize", updateMedia);
+    return () => window.removeEventListener("resize", updateMedia);
   });
 
 
@@ -65,16 +69,38 @@ const LoginForm = styled("form")({
 
 
 const theme = createTheme();
-export function Login() {
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    const loginBody = new FormData(e.currentTarget);
-    console.log(loginBody.get("email"));
-    console.log(loginBody.get("password"));
-    setTimeout(() => {
-      window.location.assign('/');
-    }, 3000);
-    //come back later/////////////////////////
+
+
+
+export function Login(props) {
+  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  }
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.login.token);
+    } catch (e) {
+      console.error(e);
+    }
+
+    // clear form values
+    setFormState({
+      email: '',
+      password: '',
+    });
   };
 
   return (
@@ -100,6 +126,7 @@ export function Login() {
             backgroundPosition: "center",
           }}
         />
+        
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           <Box
             sx={{
@@ -116,10 +143,13 @@ export function Login() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            
+            
+            
             <Box
               component="form"
               noValidate
-              onSubmit={loginSubmit}
+              onSubmit={handleLogin}
               sx={{ mt: 1 }}
             >
               <TextField
@@ -130,6 +160,8 @@ export function Login() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={formState.email}
+                onChange={handleChange}
                 autoFocus
               />
               <TextField
@@ -140,6 +172,8 @@ export function Login() {
                 label="Password"
                 type="password"
                 id="password"
+                value={formState.password}
+                onChange={handleChange}
                 autoComplete="current-password"
               />
               <FormControlLabel
@@ -154,6 +188,7 @@ export function Login() {
               >
                 Sign In
               </Button>
+              
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
