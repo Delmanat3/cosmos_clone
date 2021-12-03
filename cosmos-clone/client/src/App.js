@@ -1,10 +1,11 @@
-import Customs from './components/Customs'
+import Customs from './testation/Customs'
 import {Home} from './pages/home'
 import {Login} from './pages/Login'
 import {SignUp} from './pages/signup'
 import  {NavBar}  from './components/NavBar';
+import  {FeaturedPost}from './components/booty'
 import Row from './components/CoinInfo'
-import Coins from './components/Coins'
+import {Coins} from './components/Coins'
 import React from 'react';
 import {
   ApolloClient,
@@ -63,8 +64,8 @@ function App() {
               <Route exact path='/coins' component={Coins}/>
             </Switch>
             <Switch>
-              <Route exact path='/coins' component={Customs}/>
-            </Switch>
+              <Route exact path='/featured' component={FeaturedPost}/>
+            </Switch> 
           </>
         </Router>
         
