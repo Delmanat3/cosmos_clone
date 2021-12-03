@@ -35,6 +35,7 @@ import CardContent from '@mui/material/CardContent';
 
 export function Home() {
   const [searchedCoins, setSearchedCoins] = useState([]);
+
   const { data, error, loading } = useQuery(GET_LOAD);
 
   if (error) throw new Error();

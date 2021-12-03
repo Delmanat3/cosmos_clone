@@ -12,17 +12,34 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useMutation, useQuery } from "@apollo/client";
+
+import { GET_LOAD } from "../utils/queries";
 
 const drawerWidth = 240;
 
-export default function Coins() {
+export  function Coins() {
+const [poop,setPoop]=React.useState([])
+
+const { data, error, loading } = useQuery(GET_LOAD);
+
+if(error){
+    throw new Error
+}
+
+if(loading)return "loading..."
+// setPoop(data)
+ console.log(data)
+
+
+
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <Typography variant="h6" noWrap component="div">
-            Clipped drawer
+             {data.name}
           </Typography>
         </Toolbar>
       </AppBar>
