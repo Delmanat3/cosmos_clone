@@ -9,7 +9,7 @@ import { GET_LOAD } from "../utils/queries";
 import Carousel from 'react-material-ui-carousel'
 import { Paper, Button, Container, Typography } from '@mui/material'
 import Marquee from "react-fast-marquee";
-
+// import {Fuck} from '../components/chart'
 // import { SimpleSearch } from "../utils/API";
 // import { Container } from "@mui/material";
 // import Button from "@mui/material/Button";
@@ -29,7 +29,7 @@ import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import { FeaturedPost } from "../components/booty";
-
+// import Graph from "../components/chart";
 // import { SAVE_BOOK } from "../utils/mutations";
 // import SearchBooks from "../../../../../book_search/client/src/pages/SearchBooks";
 
@@ -59,7 +59,7 @@ coins.map( (coin, i) => <Typography key={i} component='p' variant="p2" > {coin.n
 
 {/* <Container sx={{display:'flex',justifyContent:'flex-start',ml:'-1rem'}}> */}
 <Box
-sx={{pt:'5rem',pl:'3rem'}}
+sx={{pt:'5rem',pl:'2.5rem'}}
 >
 <FeaturedPost/>
 </Box>
@@ -67,6 +67,14 @@ sx={{pt:'5rem',pl:'3rem'}}
 {/* </Container> */}
 
 <Grid sx={{display:'flex',justifyContent:'center'}}>
+  {/* <Fuck/> */}
+  {/* <Graph
+  className="col-md-4"
+  maxHeight="200px"
+  type="bar"
+  data={coins.price}
+  //options={{...}}
+/> */}
 <p>hello world</p>
 <Box 
 >

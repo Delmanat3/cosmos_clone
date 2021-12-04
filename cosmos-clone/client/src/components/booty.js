@@ -50,7 +50,7 @@ export function FeaturedPost() {
         <Card key={art.title} sx={{ maxWidth: 320 }}>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+              <Avatar sx={{ bgcolor: red[500] }} aria-label="news-card">
                 R
               </Avatar>
             }
@@ -65,8 +65,8 @@ export function FeaturedPost() {
           <CardMedia
             component="img"
             height="194"
-            image={art.image}
-            alt={art.source}
+            image={art.image ||'./placeholder.jpg'} 
+            alt='./placeholder.jpg'
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary">
@@ -93,7 +93,7 @@ export function FeaturedPost() {
             <CardContent>
               <Typography paragraph>Article:</Typography>
               <Typography paragraph>{art.snip}</Typography>
-              <p1>Description:</p1>
+              <p>Description:</p>
               <Typography paragraph>{art.desc}</Typography>
               <Link href={art.url}>Link to site</Link>
             </CardContent>

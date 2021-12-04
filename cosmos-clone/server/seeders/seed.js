@@ -10,22 +10,15 @@ const { default: axios } = require('axios');
  const TopSeven=async()=>{
   return await axios.get('https://api.coingecko.com/api/v3/search/trending')
 }
+// PmEilmL1uYjduOn8qKZvY3fIDy9jpUXvb1Ecnj5f
 
+const CuckCuck=async()=>{
+   return await axios.get(`https://api.marketaux.com/v1/news/all?symbols=TSLA%2CAMZN%2CMSFT&filter_entities=true&language=en&api_token=PmEilmL1uYjduOn8qKZvY3fIDy9jpUXvb1Ecnj5f`)
+}
 
 const NewNews=async()=>{
-    const baseURL=` https://api.thenewsapi.com/v1/news/all?api_token=y2BlCaWBZQtxhRfyalfZ5Y0gHAsOmPv0OoZ2dO4n&search=crypto|usd`
+    const baseURL=`https://api.thenewsapi.com/v1/news/all?&language=en&api_token=y2BlCaWBZQtxhRfyalfZ5Y0gHAsOmPv0OoZ2dO4n&search=crypto|currency|usd`
     return await axios.get(baseURL)
-    // axios.get(baseURL).then((response) => {
-      //const newNews=response.data
-      //const cunt=newNews.data.data
-    // const y=newNews.map((coin)=>({
-    //   title:coin.title
-    // }))
-// console.log(newNews)
-   //return newNews
-      
-   
-//})
 }
 const Bigger=async()=>{
   try{
@@ -108,6 +101,8 @@ db.once('open', async () => {
     const newsyBoy=await NewNews()
     const coocoo=newsyBoy.data.data
     //const cu=coocoo.title
+    console.log(coocoo)
+
     const newspoo=coocoo.map((art)=>({
       title:art.title,
       categories:art.categories,
@@ -118,9 +113,27 @@ db.once('open', async () => {
       snip:art.snippet,
       desc:art.description || 'none provided'
     }))
-    console.log(newspoo)
+    // console.log(newspoo)
     await Graph.create(newspoo)
 
+    const market=await CuckCuck()
+    console.log(market)
+    const whowho=market.data.data
+    //const cu=coocoo.title
+    console.log(whowho)
+
+    const marketData=whowho.map((art)=>({
+      title:art.title,
+      categories:art.categories,
+      image:art.image_url || './placeholder.jpg',
+      date:art.published_at,
+      source:art.source,
+      url:art.url,
+      snip:art.snippet,
+      desc:art.description || 'none provided'
+    }))
+    // console.log(newspoo)
+    await Graph.create(marketData)
     console.log('all done!');
     process.exit(0);
   } catch (err) {

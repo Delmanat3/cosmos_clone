@@ -6,7 +6,7 @@ import  {NavBar}  from './components/NavBar';
 import  {FeaturedPost}from './components/booty'
 import Row from './components/CoinInfo'
 import {Coins} from './components/Coins'
-import { Cards } from './components/CardData';
+// import  {Chart}  from './components/chart';
 import React from 'react';
 import { Fucker } from './pages/Single';
 import {
@@ -70,7 +70,7 @@ function App() {
               <Route exact path='/featured' component={FeaturedPost}/>
             </Switch> 
             {/* <Switch>
-              <Route exact path='/fucker' component={}/>
+              <Route exact path='/fucker' component={Chart}/>
             </Switch>  */}
             <Footer/>
           </>
