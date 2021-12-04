@@ -6,32 +6,30 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const graphSchema = new Schema({
-	name: {
+	title: {
 		type: String,
 	},
-	sparkline:[{
+	categories:[{
 		type:String,
 	}],
-	high:[{
-		type:Object,
-	}],
-	low:{
-		type:String
-	},
-	current:[{
+	description:{
 		type:String,
-	}],
-	updated:[{
-		type:Object,
-	}],
-	supply:{
+	},
+	image:{
 		type:String
 	},
-	date_added: {
-        type: Date,
-        default: Date.now,
-		get: (timestamp) => dateFormat(timestamp)
-    }
+	date:{
+		type:String,
+	},
+	source:{
+		type:Object,
+	},
+	url:{
+		type:String
+	},
+	snip:String,
+	desc:String
+	
 });
 
 const Graph = mongoose.model('Graph', graphSchema);

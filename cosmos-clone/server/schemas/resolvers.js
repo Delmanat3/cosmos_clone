@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User,Coin } = require('../models');
+const { User,Coin,Graph } = require('../models');
 const { signToken } = require('../utils/auth');
 
 
@@ -13,8 +13,14 @@ const resolvers={
         users: async ()=>{
             return User.find();
         },
+        news: async ()=>{
+          return Graph.find();
+      },
         user: async (parent,{userid})=>{
             return await User.findOne({_id:userid});
+        },
+          new: async (parent,{ID})=>{
+            return await Graph.findOne({_id:ID});
         },
         me: async (parent, args, context) => {
             if (context.user) {

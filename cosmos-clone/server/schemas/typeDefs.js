@@ -12,10 +12,15 @@ type User {
     bio:String
 }
 type Graph{
-    name:String!
-    sparkline:[String]!
-    high:[String]
-    low:String
+    title:String!
+    categories:[String]!
+    description:String!
+    image:String
+    date:String
+    source:String
+    url:String
+    snip:String
+    desc:String
 
 }
 
@@ -51,6 +56,8 @@ type Auth{
 type Query{
     users:[User]!
     coins:[Coin]!
+    new(_id:ID!):Graph
+    news:[Graph]!
     user(userid: ID!):User
     me:User
 }
