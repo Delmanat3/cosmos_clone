@@ -16,6 +16,22 @@ export const GET_LOAD = gql`
 
   
 `;
+export const GET_NEWS = gql`
+  {
+    news{
+   title
+   desc
+   image
+   date
+   image
+   source
+   url
+   snip
+    }
+  }
+
+  
+`;
 export const QUERY_USER = gql`
   query user($email: String!) {
     user(email: $email) {

@@ -6,7 +6,9 @@ import  {NavBar}  from './components/NavBar';
 import  {FeaturedPost}from './components/booty'
 import Row from './components/CoinInfo'
 import {Coins} from './components/Coins'
+import { Cards } from './components/CardData';
 import React from 'react';
+import { Fucker } from './pages/Single';
 import {
   ApolloClient,
   InMemoryCache,
@@ -17,6 +19,7 @@ import { BrowserRouter as Router,Switch, Route ,useLocation } from 'react-router
 
 
 import { setContext } from '@apollo/client/link/context';
+import Footer from './components/footer';
 
 
 const httpLink = createHttpLink({
@@ -66,6 +69,10 @@ function App() {
             <Switch>
               <Route exact path='/featured' component={FeaturedPost}/>
             </Switch> 
+            {/* <Switch>
+              <Route exact path='/fucker' component={}/>
+            </Switch>  */}
+            <Footer/>
           </>
         </Router>
         

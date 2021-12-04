@@ -1,5 +1,5 @@
 const db = require('../config/connection');
-const { User,Coin } = require('../models');
+const { User,Coin, Graph } = require('../models');
 const profileSeeds = require('./profileSeeds.json');
 const { default: axios } = require('axios');
 
@@ -12,14 +12,27 @@ const { default: axios } = require('axios');
 }
 
 
-
-
+const NewNews=async()=>{
+    const baseURL=` https://api.thenewsapi.com/v1/news/all?api_token=y2BlCaWBZQtxhRfyalfZ5Y0gHAsOmPv0OoZ2dO4n&search=crypto|usd`
+    return await axios.get(baseURL)
+    // axios.get(baseURL).then((response) => {
+      //const newNews=response.data
+      //const cunt=newNews.data.data
+    // const y=newNews.map((coin)=>({
+    //   title:coin.title
+    // }))
+// console.log(newNews)
+   //return newNews
+      
+   
+//})
+}
 const Bigger=async()=>{
   try{
   const resData= await axios.get(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&price_change_percentage=24h%2C7d`)
   //console.table(resData.data)
 const {data}=resData
-console.log(data)
+//console.log(data)
   }catch(err){
     console.table(err)
   }
@@ -34,7 +47,8 @@ Bigger()
 db.once('open', async () => {
   try {
     await User.deleteMany({});
-    await Coin.deleteMany({})
+    await Coin.deleteMany({});
+    await Graph.deleteMany({});
     await User.create(profileSeeds);
     arr1=[]
     arr2=[]
@@ -91,6 +105,21 @@ db.once('open', async () => {
      //console.table(descData)
     await Coin.create(descData)
 
+    const newsyBoy=await NewNews()
+    const coocoo=newsyBoy.data.data
+    //const cu=coocoo.title
+    const newspoo=coocoo.map((art)=>({
+      title:art.title,
+      categories:art.categories,
+      image:art.image_url,
+      date:art.published_at,
+      source:art.source,
+      url:art.url,
+      snip:art.snippet,
+      desc:art.description || 'none provided'
+    }))
+    console.log(newspoo)
+    await Graph.create(newspoo)
 
     console.log('all done!');
     process.exit(0);

@@ -28,7 +28,7 @@ import { Cards } from "../components/CardData";
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-
+import { FeaturedPost } from "../components/booty";
 
 // import { SAVE_BOOK } from "../utils/mutations";
 // import SearchBooks from "../../../../../book_search/client/src/pages/SearchBooks";
@@ -57,41 +57,14 @@ coins.map( (coin, i) => <Typography key={i} component='p' variant="p2" > {coin.n
 </>
 
 
-<Container sx={{display:'flex',justifyContent:'flex-start',ml:'-1rem'}}>
-  <Grid>
- 
+{/* <Container sx={{display:'flex',justifyContent:'flex-start',ml:'-1rem'}}> */}
+<Box
+sx={{pt:'5rem',pl:'3rem'}}
+>
+<FeaturedPost/>
+</Box>
 
-  <Box
-    component="span"
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-
-    <Card sx={{ minWidth: 275 }}>
-      <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-          {/* be{bull}nev{bull}o{bull}lent */}
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
-<p>hello world</p>
-  </Grid>
-</Container>
+{/* </Container> */}
 
 <Grid sx={{display:'flex',justifyContent:'center'}}>
 <p>hello world</p>
@@ -101,7 +74,7 @@ coins.map( (coin, i) => <Typography key={i} component='p' variant="p2" > {coin.n
 </Box>
 </Grid>
 </>
-
+// y2BlCaWBZQtxhRfyalfZ5Y0gHAsOmPv0OoZ2dO4n
 )
 }
 
