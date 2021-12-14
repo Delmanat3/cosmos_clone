@@ -61,7 +61,7 @@ function App() {
               <Route exact path='/coins' component={Coins}/>
             </Switch>
             
-            <Footer/>
+          
         </Router>
      </ApolloProvider>
     

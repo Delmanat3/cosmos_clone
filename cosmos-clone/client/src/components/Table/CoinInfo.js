@@ -84,8 +84,9 @@ function Row() {
   }));
 
   return (
-    <>
+    
       <Container
+    
         sx={{ pt: "10rem", display: "flex", justifyContent: "center" }}
       >
         <div style={{ height: 900, width: "100%" }}>
@@ -125,7 +126,7 @@ function Row() {
           </Popover>
         </div>
       </Container>
-    </>
+    
   );
 }
 

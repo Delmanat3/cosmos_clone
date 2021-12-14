@@ -4,7 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Link from "@mui/material/Link";
 import CssBaseline from "@mui/material/CssBaseline";
-
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { useQuery,useMutation } from '@apollo/client';
@@ -70,9 +71,13 @@ export function Coins(props) {
   
     console.log(userData)
     const [saveCoin, { error }] = useMutation(ADD_FAV);
+    const [flag, setFlag] = React.useState(true);
 
 const HandleFav=async(e)=>{
   e.preventDefault();
+  setFlag(!flag);
+ 
+
   // const [savedBookIds, setSavedBookIds] = useState([]);
     const fucked=state.id
     try{
@@ -83,14 +88,14 @@ const HandleFav=async(e)=>{
  }catch(err){
    console.error(err)
  }
-  
+ alert('coin added')
 }
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box >
       <CssBaseline />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box style={{ backgroundColor: "#262626" }} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
             {/* Chart */}
@@ -153,18 +158,22 @@ const HandleFav=async(e)=>{
             <Grid item xs={12}>
               <Typography
               variant="h6"
+              color='white'
               >
               Hello {userData.name}   
               </Typography>
               
               <IconButton 
-              onClick={HandleFav}
-              size="large" color="inherit">
+              color={flag ? "primary" : "secondary"}
+              onClick={
+                HandleFav
+            }
+              size="large" >
                 <Badge color="error">
                   <FavoriteBorderIcon />
                 </Badge>
               </IconButton>
-              <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+              <Paper sx={{ p: 2, flexDirection: "column" }}>
                 <Typography sx={{ py: "1rem" }} component="h6" variant="h6">
                   {" "}
                   Current Price(USD):
