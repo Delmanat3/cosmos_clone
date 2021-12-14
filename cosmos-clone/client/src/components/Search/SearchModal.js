@@ -1,26 +1,22 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Modal from "@mui/material/Modal";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SimpleSearch } from "../../utils/API";
-import { DialogContentText, TextField } from "@mui/material";
+import {  TextField } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import MuiDialogActions from "@mui/material/DialogActions";
 import MuiDialogContent from "@mui/material/DialogContent";
-import MuiDialogContentText from "@mui/material/DialogContentText";
 import MuiDialogTitle from "@mui/material/DialogTitle";
 import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@material-ui/core/IconButton";
 // import CloseIcon from "@material-ui/core/IconClose";
-import Auto from "../AutoComplete";
 import { Link } from "react-router-dom";
 import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
-import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 
 
@@ -92,7 +88,7 @@ console.log(searchInput)
    const response =  await SimpleSearch(searchInput);
 // console.log(response)
     if (!response) {
-        throw new Error    
+        throw new Error()  
     }
 console.log(response)
     const { data } = response;

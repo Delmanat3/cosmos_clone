@@ -4,17 +4,11 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import {
   DataGrid,
-  GridToolbarDensitySelector,
-  GridToolbarFilterButton,
+
 } from "@mui/x-data-grid";
-import ClearIcon from "@mui/icons-material/Clear";
-import SearchIcon from "@mui/icons-material/Search";
-import { createTheme } from "@mui/material/styles";
-import { createStyles, makeStyles } from "@mui/styles";
+
 import { GridToolbar } from "@mui/x-data-grid";
 import { Container } from "@mui/material";
-import { NavBar } from "../NavStuff/NavBar";
-
 const columns = [
   { field: "name", headerName: "name", width: 90 },
   {
@@ -35,7 +29,7 @@ const columns = [
     width: 120,
     type: "number",
   },
-  ,
+  
   {
     field: "updated",
     headerName: "last-updated",
@@ -69,8 +63,8 @@ function Row() {
 
   const open = Boolean(anchorEl);
 
-  const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&updated_change_percentage=24h%2C7d`;
   React.useEffect(() => {
+    const baseURL = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=true&updated_change_percentage=24h%2C7d`;
     axios.get(baseURL).then((response) => {
       setPost(response.data);
     });

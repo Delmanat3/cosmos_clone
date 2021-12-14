@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from "@mui/system";
 import { Typography } from "@mui/material";
 import { TextField } from "@mui/material";
 import { FormControlLabel } from "@mui/material";
@@ -8,8 +7,6 @@ import { Button } from "@mui/material";
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { LoginDesktop } from "../components/LoginDesktop";
-import { Redirect } from "react-router-dom";
-
 import Avatar from '@mui/material/Avatar';
 import CssBaseline from '@mui/material/CssBaseline';
 import Link from '@mui/material/Link';
@@ -48,37 +45,8 @@ export function MediaQuery(){
     );
   }
 
-const LogoImg="./assets/img/logo.png"
-//STYLING WILL COME BACK AND CHANGE TO SX
 
- const MainDiv=styled("div")({
-    display: "flex"
-    })
 
- const LoginFormSection=styled("section")({
-    width:"calc(100% - 1rem)",
-    marginLeft:"1rem",
-    display:"flex",
-    flexDirection:"column",
-    alignItems:"center"
-
-})
- export const Banner=styled("div")({
-    height:"4rem",
-    //width:'100%',
-   // backgroundColor:"#B945FF"
-  
-})
- const LogoBox=styled("div")({
-    width:"100%",
-    display:"flex",
-    justifyContent:"flex-start"
-})
-
- const LoginForm=styled("form")({
-   maxWidth:"30rem"  
-}
-)
 
 const theme = createTheme();
 
@@ -89,7 +57,7 @@ export function SignUp(){
     email: '',
     password: '',
   });
-  const [addUser, { error, data }] = useMutation(ADD_USER);
+  const [addUser] = useMutation(ADD_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -112,12 +80,6 @@ export function SignUp(){
         } catch (e) {
           console.error(e);
         }
-        // const loginBody = new FormData(e.currentTarget)
-        // console.log(loginBody.get('name'))
-        // console.log(loginBody.get('email'))
-        // console.log(loginBody.get('password'))
-        // console.log(loginBody.get('repeatPassword'))
-        // return <Redirect to="/"/>
 
     }   
 

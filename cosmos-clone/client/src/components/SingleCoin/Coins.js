@@ -1,24 +1,15 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
-import AppBar from "@mui/material/AppBar";
-import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import ListItem from "@mui/material/ListItem";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import { useMutation, useQuery } from "@apollo/client";
-import MenuIcon from "@mui/icons-material/Menu";
+
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { mainListItems, secondaryListItems } from "../Info/ListItems";
-import { GET_LOAD } from "../../utils/queries";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";

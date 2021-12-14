@@ -11,11 +11,6 @@ const {authMiddleware} = require('./utils/auth');
 const PORT = process.env.PORT || 3001;
 const app = express();
 
-// IF ANYONE WANTS TO HELP MOST OF THE WORK IS IN HOME.JS IN SRC 
-
-// const GraphData=async(query)=>{
-// 	return await axios.get("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=binancecoin&order=market_cap_desc&per_page=100&page=1&sparkline=true")
-//   }
 const server = new ApolloServer({
 	typeDefs,
 	resolvers,
@@ -31,9 +26,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
 
-// if (process.env.NODE_ENV === 'production') {
-// 	app.use(express.static(path.join(__dirname, '../client/build')));
-//   }
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static(path.join(__dirname, '../client/build')));
+  }
 
 app.get('/', (req, res) => {
 	res.sendFile(path.join(__dirname, '../client/public/index.html'));
