@@ -27,7 +27,7 @@ export const NavBar = () => {
           </IconButton>
 
           <IconButton size="large" color="inherit">
-            <Link href="/signup" color="white" underline="none">
+            <Link src="/signup" color="white" underline="none">
               <Badge
                 sx={{
                   fontStyle: "Monteserrat",
@@ -45,7 +45,7 @@ export const NavBar = () => {
           </IconButton>
 
           <IconButton size="large" color="inherit">
-            <Link href="/profile" color="white" underline="none">
+            <Link src="/profile" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
@@ -56,7 +56,7 @@ export const NavBar = () => {
             </Link>
           </IconButton>
           <IconButton size="large" color="inherit">
-            <Link href="/login" color="white" underline="none">
+            <Link src="/login" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
@@ -67,7 +67,7 @@ export const NavBar = () => {
             </Link>
           </IconButton>
           <IconButton size="large" color="inherit">
-            <Link href="/coininfo" color="white" underline="none">
+            <Link src="/coininfo" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
