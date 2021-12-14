@@ -22,7 +22,6 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useTheme } from "@mui/material/styles";
 import {GET_ME}from '../../utils/queries'
 import { ADD_FAV } from "../../utils/mutations";
-
 export function Coins(props) {
 
   const theme = useTheme();
