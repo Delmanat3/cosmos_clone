@@ -12,9 +12,11 @@ import LoginIcon from "@mui/icons-material/Login";
 import FaceIcon from "@mui/icons-material/Face";
 export const NavBar = () => {
   return (
-    <Box>
+
       <AppBar
-        sx={{ color: "white", backgroundColor: "black" }}
+        sx={{
+          
+          color: "white", backgroundColor: "black" }}
         position="static"
       >
         <Toolbar>
@@ -39,7 +41,7 @@ export const NavBar = () => {
                   sx={{ mr: 0.5 }}
                   style={{ fill: "white" }}
                 />
-                {"Signup"}
+                
               </Badge>
             </Link>
           </IconButton>
@@ -51,7 +53,7 @@ export const NavBar = () => {
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
               >
                 <FaceIcon sx={{ mr: 0.5 }} style={{ fill: "white" }} />
-                Profile
+              
               </Badge>
             </Link>
           </IconButton>
@@ -62,7 +64,7 @@ export const NavBar = () => {
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
               >
                 <LoginIcon sx={{ mr: 0.5 }} style={{ fill: "white" }} />
-                login
+               
               </Badge>
             </Link>
           </IconButton>
@@ -73,7 +75,7 @@ export const NavBar = () => {
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
               >
                 <MoneyIcon sx={{ mr: 0.5 }} style={{ fill: "white" }} />
-                Coins
+                
               </Badge>
             </Link>
           </IconButton>
@@ -82,6 +84,6 @@ export const NavBar = () => {
         </Toolbar>
         <Marque />
       </AppBar>
-    </Box>
+ 
   );
 };
