@@ -74,11 +74,11 @@ export function Coins(props) {
 const HandleFav=async(e)=>{
   e.preventDefault();
   // const [savedBookIds, setSavedBookIds] = useState([]);
-    const gay=state.id
+    const fucked=state.id
     try{
 
   await saveCoin({
-    variables:{coin:gay},
+    variables:{coin:fucked},
   })
  }catch(err){
    console.error(err)
