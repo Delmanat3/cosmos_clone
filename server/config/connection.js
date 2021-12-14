@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 require("dotenv").config();
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/cosmos_clone', {
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/cosmos_clone', {
 	useNewUrlParser: true,
-	
     useUnifiedTopology: true,
     
 });
