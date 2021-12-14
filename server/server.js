@@ -5,7 +5,7 @@ const db = require('./config/connection');
 const path = require('path');
 
 const { ApolloServer } = require('apollo-server-express');
-const { typeDefs, resolvers } = require('./schemas');
+const { typeDefs, resolvers } = require('../server/schemas');
 const {authMiddleware} = require('./utils/auth');
 
 const PORT = process.env.PORT || 3001;
