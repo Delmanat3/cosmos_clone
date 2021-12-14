@@ -81,14 +81,7 @@ export const NavBar = () => {
               </Badge>
               </Link>
             </IconButton>
-            <IconButton size="large" color="inherit">
-            <Link href="/coins" color='white' underline="none"> 
-              <Badge color="error" sx={{font: 'Monteserrat', fontSize: ".6em", color: "FFFFFF"}}>
-                <MonetizationOnIcon sx={{mr:.5}} style={{fill: "white"}}/> 
-                Coin
-              </Badge>
-              </Link>
-            </IconButton>
+          
     {/* {/* </Box> */}
         </Toolbar> 
         <Marque/>
