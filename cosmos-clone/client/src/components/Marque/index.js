@@ -1,5 +1,5 @@
 import { GET_LOAD } from "../../utils/queries";
-import {  Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import Marquee from "react-fast-marquee";
 import Box from "@mui/material/Box";
 import { useQuery } from "@apollo/client";
@@ -25,7 +25,7 @@ style={{
 }}
 >
 {
-coins.map( (coin, i) => <Typography key={i} component='p' variant="p2" > {coin.name}  {coin.supply} </Typography> )
+coins.map( (coin, i) => <Typography key={i} component='p' variant="p2" > {'//'}  {coin.name}:{coin.supply}</Typography> )
             }
 </Marquee>
 </Box>

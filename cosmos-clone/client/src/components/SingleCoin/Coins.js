@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-import Link from "@mui/material/Link";
 import CssBaseline from "@mui/material/CssBaseline";
 
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { useQuery,useMutation } from '@apollo/client';
-import { saveBookIds, getSavedBookIds } from "../../utils/localStorage";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { Container } from "@mui/material";
@@ -23,20 +21,16 @@ import {
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useTheme } from "@mui/material/styles";
 import {GET_ME}from '../../utils/queries'
-import Auth from '../../utils/auth';
 import { ADD_FAV } from "../../utils/mutations";
 
 export function Coins(props) {
-  const [open, setOpen] = React.useState(true);
 
   const theme = useTheme();
 
   const { state } = props.location;
   console.log(state);
 
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
+
 
   const shit = state.graphData;
   const dick = state.links.homepage;
@@ -65,14 +59,18 @@ export function Coins(props) {
     Wednesday: graph,
     Thursday: graph,
   }));
-  const {loading,data}=useQuery(GET_ME);
+  const {data}=useQuery(GET_ME);
   const userData=data?.me || {}
   
     console.log(userData)
-    const [saveCoin, { error }] = useMutation(ADD_FAV);
+    const [saveCoin] = useMutation(ADD_FAV);
+    const [flag, setFlag] = React.useState(true);
 
 const HandleFav=async(e)=>{
   e.preventDefault();
+  setFlag(!flag);
+ 
+
   // const [savedBookIds, setSavedBookIds] = useState([]);
     const fucked=state.id
     try{
@@ -83,14 +81,14 @@ const HandleFav=async(e)=>{
  }catch(err){
    console.error(err)
  }
-  
+ alert('coin added')
 }
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box >
       <CssBaseline />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box style={{ backgroundColor: "#262626" }} component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
             {/* Chart */}
@@ -153,18 +151,22 @@ const HandleFav=async(e)=>{
             <Grid item xs={12}>
               <Typography
               variant="h6"
+              color='white'
               >
               Hello {userData.name}   
               </Typography>
               
               <IconButton 
-              onClick={HandleFav}
-              size="large" color="inherit">
+              color={flag ? "primary" : "secondary"}
+              onClick={
+                HandleFav
+            }
+              size="large" >
                 <Badge color="error">
                   <FavoriteBorderIcon />
                 </Badge>
               </IconButton>
-              <Paper sx={{ p: 2, display: "flex", flexDirection: "column" }}>
+              <Paper sx={{ p: 2, flexDirection: "column" }}>
                 <Typography sx={{ py: "1rem" }} component="h6" variant="h6">
                   {" "}
                   Current Price(USD):

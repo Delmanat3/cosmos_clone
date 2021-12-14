@@ -8,9 +8,9 @@ export const MidCenter =()=>{
 
 <Grid
 item
-maxHeight='10rem'
-maxWidth='md'
-sx={{pl:'2.5rem',pt:'1rem'}}
+// maxHeight='10rem'
+// maxWidth='md'
+//sx={{pl:'2.5rem',pt:'1rem'}}
 >
 <div>
 
@@ -18,9 +18,9 @@ sx={{pl:'2.5rem',pt:'1rem'}}
     <figure className="figure">
     <img 
     style={{
-        maxHeight:'420px',
-    minHeight:'420px',
-    width:'800px'
+        //maxHeight:'420px',
+    // height:'420px',
+    // width:'800px'
     }}
     src={dh} className="figure-img img-fluid rounded" alt="backroundimg"/>
     </figure>

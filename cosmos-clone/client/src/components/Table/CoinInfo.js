@@ -29,7 +29,6 @@ const columns = [
     width: 120,
     type: "number",
   },
-  
   {
     field: "updated",
     headerName: "last-updated",
@@ -84,8 +83,9 @@ function Row() {
   }));
 
   return (
-    <>
+    
       <Container
+    
         sx={{ pt: "10rem", display: "flex", justifyContent: "center" }}
       >
         <div style={{ height: 900, width: "100%" }}>
@@ -125,7 +125,7 @@ function Row() {
           </Popover>
         </div>
       </Container>
-    </>
+    
   );
 }
 
