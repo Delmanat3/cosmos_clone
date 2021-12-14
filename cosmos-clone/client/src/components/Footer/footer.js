@@ -5,13 +5,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary">
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
+    <Typography variant="body2" color="text.secondary" >
+      {'No Copyright © Just Spite '}
+      <Link color="inherit" href="https://github.com/Delmanat3">
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -25,19 +23,23 @@ export default function Footer() {
       sx={{
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh',
+        minHeight: '40vh',
       }}
     >
       <CssBaseline />
       <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
         <Typography variant="h2" component="h1" gutterBottom>
-          Sticky footer
+          Cosmos Currency
         </Typography>
         <Typography variant="h5" component="h2" gutterBottom>
-          {'Pin a footer to the bottom of the viewport.'}
-          {'The footer will move as the main element of the page grows.'}
+          {''}
+          {''}
         </Typography>
-        <Typography variant="body1">Sticky footer placeholder.</Typography>
+        <Typography 
+        align="center"
+        variant="body1">
+          Currency, Crypto, News
+        </Typography>
       </Container>
       <Box
         component="footer"

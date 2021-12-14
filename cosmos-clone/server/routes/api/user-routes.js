@@ -9,7 +9,7 @@ const {
 
 const { authMiddleware } = require('../../utils/auth');
 
-=router.route('/').post(createUser).put(authMiddleware, saveBook);
+router.route('/').post(createUser).put(authMiddleware, saveBook);
 
 router.route('/login').post(login);
 

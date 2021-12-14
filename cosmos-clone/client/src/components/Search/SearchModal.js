@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SearchIcon from "@mui/icons-material/Search";
 import { useState, useEffect } from "react";
-import { SimpleSearch } from "../utils/API";
+import { SimpleSearch } from "../../utils/API";
 import { DialogContentText, TextField } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import MuiDialogActions from "@mui/material/DialogActions";
@@ -16,6 +16,15 @@ import { withStyles } from "@material-ui/core/styles";
 import CloseIcon from "@mui/icons-material/Close";
 import IconButton from "@material-ui/core/IconButton";
 // import CloseIcon from "@material-ui/core/IconClose";
+import Auto from "../AutoComplete";
+import { Link } from "react-router-dom";
+import ListItemText from "@mui/material/ListItemText";
+import ListItem from "@mui/material/ListItem";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+
+
+
 
 const styles = (theme) => ({
   root: {
@@ -67,7 +76,6 @@ export default function SearchModal() {
 
   const tickers = [];
   const [searchInput, setSearchInput] = useState("");
-
   const [searchedCoins, setSearchedCoins] = useState([]);
 
   const HandleSearch = async (e) => {
@@ -80,15 +88,15 @@ export default function SearchModal() {
     if (!searchInput) {
       return false;
     }
-
-    const response = await SimpleSearch(searchInput);
-
+console.log(searchInput)
+   const response =  await SimpleSearch(searchInput);
+// console.log(response)
     if (!response) {
         throw new Error    
     }
-
+console.log(response)
     const { data } = response;
-
+console.log(data)
     tickers.push(data);
 
     console.log(tickers);
@@ -113,8 +121,8 @@ export default function SearchModal() {
 
   return (
     <div>
-      <Button variant="icon" color="primary" onClick={handleClickOpen}>
-        <SearchIcon />
+      <Button variant="icon" style={{fill: "white"}} onClick={handleClickOpen}>
+        <SearchIcon style={{fill: "white"}} />
       </Button>
       <Dialog fullScreen onClose={handleClose} open={open}>
         <DialogTitle onClose={handleClose}>
@@ -122,6 +130,7 @@ export default function SearchModal() {
         </DialogTitle>
         <DialogContent dividers>
           <Box component="form" onClick={HandleSearch}>
+            {/* <Auto/> */}
             <TextField
               margin="normal"
               required
@@ -137,21 +146,28 @@ export default function SearchModal() {
               Submit
             </button>
           </Box>
+          
           <Typography gutterBottom></Typography>
-          {searchedCoins.map((coin) => (
-            <DialogContentText key={coin.id}>
-              {coin.name}
-              <br />
-              <br/>
-              <p> PRICE IN USD<br/>{coin.price.usd}</p>
-              <p> CIRCULATING SUPPLY<br/> {coin.supply}</p>
-              <p>COIN HISTORY<br/>{coin.description.en}</p>
-              
-           
- 
-            </DialogContentText>
-            
+          {searchedCoins.map((coin,i) => (
+             <div key={coin[i]}>
+             <Link
+               to={{
+                 pathname: "/coins",
+                 state: coin, 
+               }}
+             >
+               <ListItem button>
+                
+                 <ListItemText
+                   sx={{ BackgroundColor: "transparent" }}
+                   primary={coin.name}
+                   secondary={coin.price.en}
+                 />
+               </ListItem>
+             </Link>
 
+             <Divider />
+           </div>
           ))}
         </DialogContent>
         <DialogActions>
