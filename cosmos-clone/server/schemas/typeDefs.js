@@ -10,8 +10,10 @@ type User {
     password:String!
     pic:String
     bio:String
+    saved_coin:[String]!
 }
 type Graph{
+    _id:ID!
     title:String!
     categories:[String]!
     description:String!
@@ -25,7 +27,7 @@ type Graph{
 }
 
 type Coin{
-
+_id:ID!
 name:String!
 description:String
 links:[String]
@@ -37,7 +39,7 @@ date_added:String!
 }
 
 input newCoin{
-
+_id:ID!
 name:String!
 description:String
 links:[String]
@@ -65,6 +67,7 @@ type Query{
 type Mutation {
     addData(coinData:newCoin):Coin
     addUser(name: String!, email: String!, password: String!,pic:String,bio:String): Auth
+    addFav(coin:String!): User
     login(email: String!, password: String!): Auth
     removeUser: User
 

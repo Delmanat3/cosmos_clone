@@ -38,22 +38,13 @@ export const ADD_USER = gql`
   }
 `;
 
-export const SAVE_BOOK = gql`
-  mutation saveBook($newBook: InputBook!) {
-    saveBook(newBook: $newBook) {
-      _id
-      username
-      email
-      savedBooks {
-        bookId
-        authors
-        description
-        title
-        image
-        link
-      }
-    }
+export const ADD_FAV = gql`
+mutation AddFav($coin: String!) {
+  addFav(coin: $coin) {
+    name
+    saved_coin
   }
+}
 `;
 
 export const REMOVE_BOOK = gql`
