@@ -88,7 +88,7 @@ function Row() {
       <Container
         sx={{ pt: "10rem", display: "flex", justifyContent: "center" }}
       >
-        <div style={{ height: 600, width: "80%" }}>
+        <div style={{ height: 900, width: "100%" }}>
           <DataGrid
             rows={x}
             columns={columns}

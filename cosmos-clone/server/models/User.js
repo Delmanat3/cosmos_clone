@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaTypes } = require('mongoose');
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
@@ -24,7 +24,10 @@ const userSchema = new Schema({
   },
   bio:{
       type:String,
-  }
+  },
+  saved_coin:[{
+    type:String,
+  }]
  
 });
 

@@ -23,11 +23,12 @@ const resolvers={
             return await Graph.findOne({_id:ID});
         },
         me: async (parent, args, context) => {
-            if (context.user) {
-              return User.findOne({ _id: context.user._id });
-            }
-            throw new AuthenticationError('You need to be logged in!');
-          },
+          if (context.user) {
+            const userData = await User.findOne({ _id: context.user._id }).select('-__v -password');
+            return userData;
+          }
+          throw new AuthenticationError('You need to be logged in!');
+        },
     },
 
 
@@ -68,8 +69,23 @@ const resolvers={
           throw new AuthenticationError('You need to be logged in!');
         },
         // Make it so a logged in user can only remove a skill from their own profile
-       
+       addFav: async (parent, args, context)=>{
+         if(context.user){
+           const faver= User.findByIdAndUpdate(
+             {_id: context.user._id},
+             { $push: { saved_coin: args.coin }},
+             { new: true }
+             
+             
+             
+             )
+              return faver
+
+         }
+         throw new AuthenticationError('You need to be logged in!');
+        },
       },
+
     };
     
     module.exports = resolvers;
