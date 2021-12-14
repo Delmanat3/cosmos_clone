@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
-import Link from "@mui/material/Link";
+import { Link } from "react-router-dom";
 import PersonAddAltTwoToneIcon from "@mui/icons-material/PersonAddAltTwoTone";
 import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
 import { Marque } from "../Marque";
@@ -19,7 +19,7 @@ export const NavBar = () => {
       >
         <Toolbar>
           <IconButton size="large">
-            <Link href="/" color="white" underline="none">
+            <Link to="/" color="white" underline="none">
               <Badge>
                 <HomeTwoToneIcon style={{ fill: "white" }} />
               </Badge>
@@ -27,7 +27,7 @@ export const NavBar = () => {
           </IconButton>
 
           <IconButton size="large" color="inherit">
-            <Link src="/signup" color="white" underline="none">
+            <Link to="/signup" color="white" underline="none">
               <Badge
                 sx={{
                   fontStyle: "Monteserrat",
@@ -45,7 +45,7 @@ export const NavBar = () => {
           </IconButton>
 
           <IconButton size="large" color="inherit">
-            <Link src="/profile" color="white" underline="none">
+            <Link to="/profile" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
@@ -56,7 +56,7 @@ export const NavBar = () => {
             </Link>
           </IconButton>
           <IconButton size="large" color="inherit">
-            <Link src="/login" color="white" underline="none">
+            <Link to="/login" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
@@ -67,7 +67,7 @@ export const NavBar = () => {
             </Link>
           </IconButton>
           <IconButton size="large" color="inherit">
-            <Link src="/coininfo" color="white" underline="none">
+            <Link to="/coininfo" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
