@@ -79,7 +79,9 @@ export default function SearchModal() {
     e.preventDefault();
     const loginBody = new FormData(e.currentTarget);
     const x = loginBody.get("searchInput");
-    setSearchInput(x);
+   const y= x.toLowerCase();
+  
+    setSearchInput(y);
 
     if (!searchInput) {
       return false;
