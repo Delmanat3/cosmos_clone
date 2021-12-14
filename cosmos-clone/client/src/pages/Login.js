@@ -1,5 +1,4 @@
 import React from "react";
-import { styled } from "@mui/system";
 import { Typography } from "@mui/material";
 import { TextField } from "@mui/material";
 import { FormControlLabel } from "@mui/material";
@@ -34,42 +33,15 @@ export function MediaQuery() {
   return <div>{isDesktop ? <LoginDesktop /> : <Login />}</div>;
 }
 
-const LogoImg = "./assets/img/logo.png";
-//STYLING WILL COME BACK AND CHANGE TO SX
 
-const MainDiv = styled("div")({
-  display: "flex",
-});
 
-const LoginFormSection = styled("section")({
-  width: "calc(100% - 1rem)",
-  marginLeft: "1rem",
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-});
 
-export const Banner = styled("div")({
-  height: "4rem",
-  //width:'100%',
-  // backgroundColor:"#B945FF"
-});
-
-const LogoBox = styled("div")({
-  width: "100%",
-  display: "flex",
-  justifyContent: "flex-start",
-});
-
-const LoginForm = styled("form")({
-  maxWidth: "30rem",
-});
 
 const theme = createTheme();
 
-export function Login(props) {
+export function Login() {
   const [formState, setFormState] = useState({ email: "", password: "" });
-  const [login, { error, data }] = useMutation(LOGIN_USER);
+  const [login] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
     const { name, value } = event.target;

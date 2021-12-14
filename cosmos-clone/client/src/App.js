@@ -1,4 +1,3 @@
-import Customs from './testation/Customs'
 import {Home} from './pages/home'
 import {Login} from './pages/Login'
 import {SignUp} from './pages/signup'
@@ -6,7 +5,6 @@ import  {NavBar}  from './components/NavStuff/NavBar';
 // import  {FeaturedPost}from './components/News/News'
 import Row from './components/Table/CoinInfo'
 import {Coins} from './components/SingleCoin/Coins'
-import  SimpleLineChart  from './components/chart';
 import React  from 'react';
 import {
   ApolloClient,
@@ -14,13 +12,9 @@ import {
   ApolloProvider,
   createHttpLink,
 } from '@apollo/client';
-import { BrowserRouter as Router,Switch, Route ,useLocation } from 'react-router-dom';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import { BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import Footer from './components/Footer/footer';
-import { SimpleSearch } from './utils/API';
-import Dashboard from './components/Info/Dash';
-import LeftNav from './components/LeftNav';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -66,9 +60,7 @@ function App() {
             <Switch>
               <Route exact path='/coins' component={Coins}/>
             </Switch>
-            <Switch>
-              <Route exact path='/info' component={Dashboard}/>
-            </Switch>
+            
             <Footer/>
         </Router>
      </ApolloProvider>

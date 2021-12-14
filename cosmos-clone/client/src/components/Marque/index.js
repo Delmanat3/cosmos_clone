@@ -1,14 +1,12 @@
 import { GET_LOAD } from "../../utils/queries";
-import Carousel from 'react-material-ui-carousel'
-import { Paper, Button, Container, Typography } from '@mui/material'
+import {  Typography } from '@mui/material'
 import Marquee from "react-fast-marquee";
 import Box from "@mui/material/Box";
-import { useMutation, useQuery } from "@apollo/client";
-import React,{ useState, useEffect } from "react";
+import { useQuery } from "@apollo/client";
+import React from "react";
 
 export const Marque=()=>{
 
-    const [searchedCoins, setSearchedCoins] = useState([]);
   
     const { data, error, loading } = useQuery(GET_LOAD);
   
