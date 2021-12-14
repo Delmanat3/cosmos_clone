@@ -19,9 +19,6 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 
-
-
-
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -34,6 +31,7 @@ const styles = (theme) => ({
     color: theme.palette.grey[500],
   },
 });
+
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
@@ -47,6 +45,7 @@ const DialogTitle = withStyles(styles)((props) => {
     </MuiDialogTitle>
   );
 });
+
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
@@ -79,10 +78,8 @@ export default function SearchModal() {
     e.preventDefault();
     const loginBody = new FormData(e.currentTarget);
     const x = loginBody.get("searchInput");
-   const y= x.toLowerCase();
-  
+   const y= x.toLowerCase().trim()
     setSearchInput(y);
-
     if (!searchInput) {
       return false;
     }
