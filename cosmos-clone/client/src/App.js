@@ -14,7 +14,6 @@ import {
 } from '@apollo/client';
 import { BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
-import Footer from './components/Footer/footer';
 const httpLink = createHttpLink({
   uri: '/graphql',
 });

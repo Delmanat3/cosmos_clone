@@ -29,7 +29,6 @@ const columns = [
     width: 120,
     type: "number",
   },
-  
   {
     field: "updated",
     headerName: "last-updated",
