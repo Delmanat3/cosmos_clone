@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import {GET_ME}from '../utils/queries'
 import { useQuery,useMutation } from '@apollo/client';
-
+import { SimpleSearch } from "../utils/API";
 import Avatar from "@mui/material/Avatar";
 
 
@@ -37,6 +37,14 @@ const {data}=useQuery(GET_ME);
       const chuckle=userData.saved_coin
       console.log(chuckle)
 
+      const handleSaved=async()=>{
+      for(let i=0;i<chuckle.length; i++){
+        const dood=chuckle[i]
+        const {data}=await SimpleSearch(dood)
+        console.log(data)
+      }
+      
+      }
 //MAKE API CALLS USING THE IDS IN THE SAVED COIN ARRAY ON LOAD OF PROFILE PAGE
 // DISPLAY CURRENT PRICE AND MAYBE MARKET CAP RANK
 //FIGURE HOW TO HAVE USER ADD PROFILE PICTURE//BIO
@@ -100,8 +108,8 @@ const {data}=useQuery(GET_ME);
                     
                 </CardContent>
                 <CardActions style={{ justifyContent: "center" }}>
-                  <Button onClick={handleOpen} size="small">
-                    View Address
+                  <Button onClick={handleSaved} size="small">
+                    Coin Info
                   </Button>
                 </CardActions>
                 <CardActions style={{ justifyContent: "center" }}>
