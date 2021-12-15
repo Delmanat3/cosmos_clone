@@ -10,7 +10,6 @@ const { default: axios } = require('axios');
  const TopSeven=async()=>{
   return await axios.get('https://api.coingecko.com/api/v3/search/trending')
 }
-// PmEilmL1uYjduOn8qKZvY3fIDy9jpUXvb1Ecnj5f
 
 const CuckCuck=async()=>{
    return await axios.get(`https://api.marketaux.com/v1/news/all?symbols=TSLA%2CAMZN%2CMSFT&filter_entities=true&language=en&api_token=PmEilmL1uYjduOn8qKZvY3fIDy9jpUXvb1Ecnj5f`)
@@ -49,7 +48,7 @@ db.once('open', async () => {
     const topCoins=await TopSeven();
     const {data}=topCoins
     const {coins}=data
-    //console.log(coins)
+    console.log(coins)
     const coinData = coins.map((coin) => ({
       name: coin.item.name,
       id: coin.item.id,
@@ -101,7 +100,7 @@ db.once('open', async () => {
     const newsyBoy=await NewNews()
     const coocoo=newsyBoy.data.data
     //const cu=coocoo.title
-    console.log(coocoo)
+    //console.log(coocoo)
 
     const newspoo=coocoo.map((art)=>({
       title:art.title,
@@ -117,10 +116,10 @@ db.once('open', async () => {
     await Graph.create(newspoo)
 
     const market=await CuckCuck()
-    console.log(market)
+    //console.log(market)
     const whowho=market.data.data
     //const cu=coocoo.title
-    console.log(whowho)
+    //console.log(whowho)
 
     const marketData=whowho.map((art)=>({
       title:art.title,

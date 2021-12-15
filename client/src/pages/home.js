@@ -41,7 +41,7 @@ export function Home() {
             width: "100%",
             height: "10rem",
             backgroundColor: "black",
-            mb: "2rem",
+            //mb: "2rem",
           }}
         >
           <SearchModal />

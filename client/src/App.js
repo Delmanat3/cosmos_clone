@@ -14,6 +14,10 @@ import {
 } from '@apollo/client';
 import { BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
+import Profile from './pages/Profile'
+
+
+
 const httpLink = createHttpLink({
   uri: '/graphql',
 });
@@ -61,7 +65,9 @@ function App() {
             <Switch>
               <Route exact path='/coins' component={Coins}/>
             </Switch>
-            
+            <Switch>
+              <Route exact path='/profile' component={Profile}/>
+            </Switch>
           
         </Router>
      </ApolloProvider>

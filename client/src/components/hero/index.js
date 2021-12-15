@@ -26,14 +26,7 @@ export const MidCenter = () => {
             alt="backroundimg"
           />
         </figure>
-        <Typography
-          variant="h5"
-          align="center"
-          color="text.secondary"
-          paragraph
-        >
-          Price differential over seven days
-        </Typography>
+     
       </div>
     </Grid>
   );
