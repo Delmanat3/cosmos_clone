@@ -67,7 +67,6 @@ export const NavBar = () => {
               </Badge>
             </Link>
           </IconButton>
-                  {/* <Nav.Link onClick={Auth.logout}>Logout</Nav.Link> */}
                  
                 </>
               ) : (

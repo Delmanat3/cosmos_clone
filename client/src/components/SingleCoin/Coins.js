@@ -23,6 +23,7 @@ import { useTheme } from "@mui/material/styles";
 import {GET_ME}from '../../utils/queries'
 import { ADD_FAV } from "../../utils/mutations";
 import Auth from '../../utils/auth';
+import SearchModal from "../Search/SearchModal";
 
 
 
@@ -32,13 +33,9 @@ export function Coins(props) {
   const theme = useTheme();
 
   const { state } = props.location;
-  console.log(state);
-
-
 
   const shit = state.graphData;
   const dick = state.links.homepage;
-  console.log(dick);
   // MAPOVER GRAPH DATA// CREATE DAY AS KEY ENTRY AS VALUE
   function createData(day, amount) {
     return { day, amount };
@@ -66,7 +63,6 @@ export function Coins(props) {
   const {data}=useQuery(GET_ME);
   const userData=data?.me || {}
   
-    console.log(userData)
     const [saveCoin] = useMutation(ADD_FAV);
     const [flag, setFlag] = React.useState(true);
 
@@ -93,6 +89,7 @@ const HandleFav=async(e)=>{
       <CssBaseline />
 
       <Box style={{ backgroundColor: "#262626" }} component="main" sx={{ flexGrow: 1, p: 3 }}>
+        <SearchModal/>
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
             {/* Chart */}
@@ -184,8 +181,8 @@ const HandleFav=async(e)=>{
               </IconButton>
               <Paper sx={{ p: 2, flexDirection: "column" }}>
                 <Typography sx={{ py: "1rem" }} component="h6" variant="h6">
-                  {" "}
-                  Current Price(USD):
+                  {"  Current Price(USD):"}
+                 
                   <br /> ${state.price.usd}
                 </Typography>
                 <Divider />
@@ -205,7 +202,10 @@ const HandleFav=async(e)=>{
                   History({state.name})
                 </Typography>
 
-                <Typography paragraph>{state.description.en}</Typography>
+                <Typography component="h7" variant="h7"sx={{fontSize:'13px', py: "1rem" }}>
+                  {" "}
+                  {state.description.en}
+                  </Typography>
                 <Divider />
 
                 {dick.map((link) => (
