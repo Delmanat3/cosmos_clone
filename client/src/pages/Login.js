@@ -55,7 +55,7 @@ export function Login() {
     console.log(formState);
     try {
       const { data } = await login({
-        variables: { ...formState },
+        variables: { ...formState.trim() },
       });
 
       Auth.login(data.login.token);
