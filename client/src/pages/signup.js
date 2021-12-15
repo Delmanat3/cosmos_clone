@@ -64,7 +64,7 @@ export function SignUp(){
 
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value.trim(),
     });
   };
     const loginSubmit=async(e)=>{

@@ -47,7 +47,7 @@ export function Login() {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: value.trim(),
     });
   };
   const handleLogin = async (event) => {
@@ -55,7 +55,7 @@ export function Login() {
     console.log(formState);
     try {
       const { data } = await login({
-        variables: { ...formState.trim() },
+        variables: { ...formState },
       });
 
       Auth.login(data.login.token);
