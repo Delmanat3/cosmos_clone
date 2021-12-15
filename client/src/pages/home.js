@@ -6,13 +6,13 @@ import { MidCenter } from "../components/hero";
 import SearchModal from "../components/Search/SearchModal";
 
 export function Home() {
-  const geed = Auth.getToken()
-  const poke = Auth.isTokenExpired(geed)
-  if (poke === true) {
-    alert("session expired");
-  }
-  const jesus=Auth.getProfile();
-  console.log(jesus)
+  // const geed = Auth.getToken()
+  // const poke = Auth.isTokenExpired(geed)
+  // if (poke === true) {
+  //   alert("session expired");
+  // }
+  // const jesus=Auth.getProfile();
+  // console.log(jesus)
   return (
     <div style={{ backgroundColor: "#262626" }}>
       <Grid
