@@ -33,7 +33,7 @@ export function Coins(props) {
   const theme = useTheme();
 
   const { state } = props.location;
-
+console.log(state)
   const shit = state.graphData;
   const dick = state.links.homepage;
   // MAPOVER GRAPH DATA// CREATE DAY AS KEY ENTRY AS VALUE
