@@ -6,7 +6,7 @@ import { MidCenter } from "../components/hero";
 import SearchModal from "../components/Search/SearchModal";
 
 export function Home() {
-  // const geed = Auth.getToken()
+  const geed = Auth.getToken()
   // const poke = Auth.isTokenExpired(geed)
   // if (poke === true) {
   //   alert("session expired");
