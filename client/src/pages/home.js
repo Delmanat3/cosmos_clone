@@ -1,22 +1,18 @@
 import React from "react";
-
-import { useQuery } from "@apollo/client";
-import { GET_LOAD } from "../utils/queries";
 import Grid from "@mui/material/Grid";
 import { News } from "../components/News/News";
-
+import Auth from "../utils/auth";
 import { MidCenter } from "../components/hero";
 import SearchModal from "../components/Search/SearchModal";
 
 export function Home() {
-  // Trigger toggle using onChange Switch
-
-  const { data, error, loading } = useQuery(GET_LOAD);
-
-  if (error) throw new Error();
-  if (loading) return "loading....";
-  const { coins } = data;
-  console.log(coins);
+  const geed = Auth.getToken()
+  const poke = Auth.isTokenExpired(geed)
+  if (poke === true) {
+    alert("session expired");
+  }
+  const jesus=Auth.getProfile();
+  console.log(jesus)
   return (
     <div style={{ backgroundColor: "#262626" }}>
       <Grid
@@ -25,9 +21,7 @@ export function Home() {
         //sx={{ mb: "23rem" }}
         alignItems="center"
       >
-       
-          <MidCenter />
-       
+        <MidCenter />
       </Grid>
 
       <Grid
