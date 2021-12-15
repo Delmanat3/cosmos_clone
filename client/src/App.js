@@ -2,9 +2,9 @@ import {Home} from './pages/home'
 import {Login} from './pages/Login'
 import {SignUp} from './pages/signup'
 import  {NavBar}  from './components/NavStuff/NavBar';
-// import  {FeaturedPost}from './components/News/News'
 import Row from './components/Table/CoinInfo'
 import {Coins} from './components/SingleCoin/Coins'
+import Footer from './components/Footer/footer'
 import React  from 'react';
 import {
   ApolloClient,
@@ -68,7 +68,7 @@ function App() {
             <Switch>
               <Route exact path='/profile' component={Profile}/>
             </Switch>
-          
+          <Footer/>
         </Router>
      </ApolloProvider>
     

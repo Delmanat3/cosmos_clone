@@ -49,8 +49,10 @@ const {data}=useQuery(GET_ME);
 // DISPLAY CURRENT PRICE AND MAYBE MARKET CAP RANK
 //FIGURE HOW TO HAVE USER ADD PROFILE PICTURE//BIO
   return (
-    <div>
-      <Container maxWidth="sm" >
+    <div
+    style={{ backgroundColor: "#262626"}}
+    >
+      <Container  maxWidth="sm" >
         <Card sx={{ backgroundColor: "white", m: 5 }}>
           <CardMedia component="img" title={userData.name} />
         </Card>
@@ -71,11 +73,12 @@ const {data}=useQuery(GET_ME);
       <Container sx={{ py: 8, justifyContent: "center" }} maxWidth="lg">
         <Grid container spacing={4}>
                      
-            <Grid item  xs={12}>
+            <Grid item sx={{py:'1rem'}} xs={12}>
               {userData.saved_coin.map((coin,i)=>(
               <Card
               key={i}
                 sx={{
+                  my:'5rem',
                   maxHeight: "100%",
                   display: "flex",
                   flexDirection: "column",

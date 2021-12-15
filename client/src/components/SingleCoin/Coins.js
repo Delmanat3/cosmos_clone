@@ -22,6 +22,11 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useTheme } from "@mui/material/styles";
 import {GET_ME}from '../../utils/queries'
 import { ADD_FAV } from "../../utils/mutations";
+import Auth from '../../utils/auth';
+
+
+
+
 export function Coins(props) {
 
   const theme = useTheme();
@@ -148,13 +153,25 @@ const HandleFav=async(e)=>{
 
             {/* Coin History */}
             <Grid item xs={12}>
-              <Typography
+            {Auth.loggedIn() ? (
+                <>
+                  <Typography
               variant="h6"
               color='white'
               >
               Hello {userData.name}   
               </Typography>
               
+                </>
+              ) : (
+                <Typography
+                variant="h6"
+                color='white'
+                >
+               login to see personalized data
+                </Typography>
+              )}
+             
               <IconButton 
               color={flag ? "primary" : "secondary"}
               onClick={
