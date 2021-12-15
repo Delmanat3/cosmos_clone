@@ -10,7 +10,15 @@ import { Marque } from "../Marque";
 import MoneyIcon from "@mui/icons-material/Money";
 import LoginIcon from "@mui/icons-material/Login";
 import FaceIcon from "@mui/icons-material/Face";
+import LogoutIcon from '@mui/icons-material/Logout';
+import Auth from '../../utils/auth';
+import { Typography } from "@mui/material";
+import {GET_ME}from '../../utils/queries'
+import { useQuery,useMutation } from '@apollo/client';
+
 export const NavBar = () => {
+  const {data}=useQuery(GET_ME);
+  const userData=data?.me || {}
   return (
 
       <AppBar
@@ -28,25 +36,13 @@ export const NavBar = () => {
             </Link>
           </IconButton>
 
-          <IconButton size="large" color="inherit">
-            <Link to="/signup" color="white" underline="none">
-              <Badge
-                sx={{
-                  fontStyle: "Monteserrat",
-                  fontSize: ".6em",
-                  textDecoration: "none",
-                }}
-              >
-                <PersonAddAltTwoToneIcon
-                  sx={{ mr: 0.5 }}
-                  style={{ fill: "white" }}
-                />
-                
-              </Badge>
-            </Link>
-          </IconButton>
-
-          <IconButton size="large" color="inherit">
+         
+          {Auth.loggedIn() ? (
+                <>
+                 <Typography variant="h6">
+                    Hello {userData.name}
+                  </Typography>
+                <IconButton size="large" color="inherit">
             <Link to="/profile" color="white" underline="none">
               <Badge
                 color="error"
@@ -57,17 +53,57 @@ export const NavBar = () => {
               </Badge>
             </Link>
           </IconButton>
-          <IconButton size="large" color="inherit">
-            <Link to="/login" color="white" underline="none">
+          <IconButton 
+           onClick={Auth.logout}
+          
+          size="large" color="inherit">
+            <Link to="#" color="white" underline="none">
               <Badge
                 color="error"
                 sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
               >
-                <LoginIcon sx={{ mr: 0.5 }} style={{ fill: "white" }} />
-               
+                <LogoutIcon sx={{ mr: 0.5 }} style={{ fill: "white" }} />
+                
               </Badge>
             </Link>
           </IconButton>
+                  {/* <Nav.Link onClick={Auth.logout}>Logout</Nav.Link> */}
+                 
+                </>
+              ) : (
+                <>
+                <IconButton size="large" color="inherit">
+                <Link to="/login" color="white" underline="none">
+                  <Badge
+                    color="error"
+                    sx={{ font: "Monteserrat", fontSize: ".6em", color: "FFFFFF" }}
+                  >
+                    <LoginIcon sx={{ mr: 0.5 }} style={{ fill: "white" }} />
+                   
+                  </Badge>
+                </Link>
+              </IconButton>
+               <IconButton size="large" color="inherit">
+               <Link to="/signup" color="white" underline="none">
+                 <Badge
+                   sx={{
+                     fontStyle: "Monteserrat",
+                     fontSize: ".6em",
+                     textDecoration: "none",
+                   }}
+                 >
+                   <PersonAddAltTwoToneIcon
+                     sx={{ mr: 0.5 }}
+                     style={{ fill: "white" }}
+                   />
+                   
+                 </Badge>
+               </Link>
+             </IconButton>
+             </>
+              )}
+         
+         
           <IconButton size="large" color="inherit">
             <Link to="/coininfo" color="white" underline="none">
               <Badge
@@ -79,7 +115,7 @@ export const NavBar = () => {
               </Badge>
             </Link>
           </IconButton>
-
+      
           {/* {/* </Box> */}
         </Toolbar>
         <Marque />
