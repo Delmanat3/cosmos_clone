@@ -11,7 +11,8 @@ export function Home() {
   if (poke === true) {
     alert("session expired");
   }
-
+  const jesus=Auth.getProfile();
+  console.log(jesus)
   return (
     <div style={{ backgroundColor: "#262626" }}>
       <Grid
