@@ -107,6 +107,14 @@ console.log(data)
       description: coin.description,
       priceChange7: coin.market_data.price_change_percentage_7d,
       priceChange30: coin.market_data.price_change_percentage_30d,
+      createDate:coin.genesis_date,
+      communityScore:coin.community_score,
+      geckoRank:coin.coingecko_rank,
+      socialData:coin.community_data,
+      categories:coin.categories,
+      hash:coin.hashing_algorithm,
+      upVotes:coin.sentiment_votes_up_percentage,
+      downVotes:coin.sentiment_votes_down_percentage
     }));
 
     console.log(coinData);
@@ -144,14 +152,14 @@ console.log(data)
           
           <Typography gutterBottom></Typography>
           {searchedCoins.map((coin,i) => (
-             <div key={coin[i]}>
+             <div >
              <Link
                to={{
                  pathname: "/coins",
                  state: coin, 
                }}
              >
-               <ListItem button>
+               <ListItem key={i} button>
                 
                  <ListItemText
                    sx={{ BackgroundColor: "transparent" }}
