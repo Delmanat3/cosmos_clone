@@ -42,7 +42,9 @@ export function Home() {
         </Grid>
       </Grid>
 
-      <Grid alignContent="center">
+      <Grid
+      sx={{maxWidth:'20%'}}
+      >
         <News />
       </Grid>
     </div>
