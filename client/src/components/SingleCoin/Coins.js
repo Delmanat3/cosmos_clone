@@ -33,8 +33,9 @@ export function Coins(props) {
   const theme = useTheme();
 
   const { state } = props.location;
-console.log(state)
+  console.log(state)
   const shit = state.graphData;
+  console.log(shit)
   const dick = state.links.homepage;
   // MAPOVER GRAPH DATA// CREATE DAY AS KEY ENTRY AS VALUE
   function createData(day, amount) {
@@ -54,12 +55,7 @@ console.log(state)
       shit
     ),
   ];
-  shit.map((graph) => ({
-    monday: graph,
-    Tuesday: graph,
-    Wednesday: graph,
-    Thursday: graph,
-  }));
+ 
   const {data}=useQuery(GET_ME);
   const userData=data?.me || {}
   
@@ -120,8 +116,7 @@ const HandleFav=async(e)=>{
                         //style={theme.typography.body2}
                       />
                       <YAxis
-                        stroke="green"
-                        // style={theme.typography.body2}
+                      
                       >
                         <Label
                           angle={270}
@@ -218,6 +213,10 @@ const HandleFav=async(e)=>{
                     <Divider />
                   </>
                 ))}
+                   <Typography sx={{ py: "1rem" }} component="h6" variant="h6">
+                     up votes: {state.upVotes} down votes: {state.downVotes} Twitter Followers: {state.socialData.twitter_followers}
+                    </Typography>
+                    <Divider />
               </Paper>
             </Grid>
           </Grid>

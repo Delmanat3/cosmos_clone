@@ -22,7 +22,7 @@ export default function Profile(props) {
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
+    const [Info,setInfo]=useState([])
 const {data}=useQuery(GET_ME);
    
       const userData= data?.me || {
@@ -42,8 +42,10 @@ const {data}=useQuery(GET_ME);
         const dood=chuckle[i]
         const {data}=await SimpleSearch(dood)
         console.log(data)
+         setInfo(data)
       }
-      
+     
+      console.log(Info)
       }
 //MAKE API CALLS USING THE IDS IN THE SAVED COIN ARRAY ON LOAD OF PROFILE PAGE
 // DISPLAY CURRENT PRICE AND MAYBE MARKET CAP RANK
@@ -114,6 +116,7 @@ const {data}=useQuery(GET_ME);
                   <Button onClick={handleSaved} size="small">
                     Coin Info
                   </Button>
+                  
                 </CardActions>
                 <CardActions style={{ justifyContent: "center" }}>
                   <Button variant="outlined" color="error">

@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import { Divider } from '@mui/material';
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" >
@@ -20,46 +21,20 @@ function Copyright() {
 export default function Footer() {
   return (
     <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '40vh',
-      }}
+    sx={{ backgroundColor:"black",display:"flex",justifyContent:'center',p:'2rem'}}
     >
-      <CssBaseline />
-      <Container component="main" sx={{ mt: 8, mb: 2 }} maxWidth="sm">
-        <Typography variant="h2" component="h1" gutterBottom>
-          Cosmos Currency
-        </Typography>
-        <Typography variant="h5" component="h2" gutterBottom>
-          {''}
-          {''}
-        </Typography>
-        <Typography 
-        align="center"
-        variant="body1">
-          Currency, Crypto, News
-        </Typography>
-      </Container>
-      <Box
-        component="footer"
-        sx={{
-          py: 3,
-          px: 2,
-          mt: 'auto',
-          backgroundColor: (theme) =>
-            theme.palette.mode === 'light'
-              ? theme.palette.grey[200]
-              : theme.palette.grey[800],
-        }}
-      >
-        <Container maxWidth="sm">
-          <Typography variant="body1">
-            My sticky footer can be found here.
-          </Typography>
-          <Copyright />
-        </Container>
-      </Box>
+    <Typography variant="body2" color="white" >
+      {'No Copyright © Just Spite '}
+  
+      {new Date().getFullYear()}
+      {'.'}
+      <Divider/>
+      <a 
+      style={{color:'white',textDecoration:'none'}} href="https://github.com/Delmanat3" target='blank'>
+        My Github
+      </a>
+    </Typography>
+    
     </Box>
   );
 }

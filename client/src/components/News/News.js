@@ -21,13 +21,6 @@ export function News() {
 
   return (
     <Grid
-      container
-      direction="row"
-      justifyContent="space-around"
-      alignItems="center"
-      //width='255'
-      style={{ width: 155, display: "inline" }}
-      //sx={{pt:'1rem'}}
     >
       {corn.map((art, i) => (
         <div key={i}>
