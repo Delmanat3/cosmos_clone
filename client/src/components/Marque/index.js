@@ -13,6 +13,8 @@ const arr2=[];
   if (error) throw new Error();
   if (loading) return "loading....";
   const { coins } = data;
+console.log(coins)
+
   for(let i=0; i<coins.length; i++){
       const gunit=coins[i].coinId
       arr1.push(gunit)
@@ -45,10 +47,9 @@ const arr2=[];
       >
         {coins.map((coin, i) => (
           <Typography key={i} component="p" variant="p2">
-             || {coin.name}:{coin.price}||
+             {coin.name}:${coin.price[0]}||
                </Typography>
                 ))}
-  
       </Marquee>
     </Box>
   );
