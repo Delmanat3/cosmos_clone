@@ -6,7 +6,6 @@ import Badge from "@mui/material/Badge";
 import { Link } from "react-router-dom";
 import PersonAddAltTwoToneIcon from "@mui/icons-material/PersonAddAltTwoTone";
 import HomeTwoToneIcon from "@mui/icons-material/HomeTwoTone";
-import { Marque } from "../Marque";
 import MoneyIcon from "@mui/icons-material/Money";
 import LoginIcon from "@mui/icons-material/Login";
 import FaceIcon from "@mui/icons-material/Face";
@@ -117,7 +116,6 @@ export const NavBar = () => {
       
           {/* {/* </Box> */}
         </Toolbar>
-        <Marque />
       </AppBar>
  
   );

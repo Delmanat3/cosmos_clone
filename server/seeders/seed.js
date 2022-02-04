@@ -11,6 +11,18 @@ const { default: axios } = require('axios');
   return await axios.get('https://api.coingecko.com/api/v3/search/trending')
 }
 
+const Times=async()=>{
+    try{
+      const resData= await axios.get('https://api.nytimes.com/svc/topstories/v2/home.json?api-key=ALH55qxTz4oYfouvhFQ6TKWpoUcZOpvI')
+      //console.table(resData.data)
+    const {data}=resData
+    console.log(data)
+      }catch(err){
+        console.log(err)
+      }
+    }
+    Times()
+
 const CuckCuck=async()=>{
    return await axios.get(`https://api.marketaux.com/v1/news/all?symbols=TSLA%2CAMZN%2CMSFT&filter_entities=true&language=en&api_token=PmEilmL1uYjduOn8qKZvY3fIDy9jpUXvb1Ecnj5f`)
 }
@@ -48,7 +60,7 @@ db.once('open', async () => {
     const topCoins=await TopSeven();
     const {data}=topCoins
     const {coins}=data
-    console.log(coins)
+    //console.log(coins)
     const coinData = coins.map((coin) => ({
       name: coin.item.name,
       id: coin.item.id,
