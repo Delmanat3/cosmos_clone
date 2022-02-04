@@ -84,10 +84,11 @@ export default function SearchModal() {
       return false;
     }
 console.log(searchInput)
+try{
    const response =  await SimpleSearch(searchInput);
 // console.log(response)
     if (!response) {
-        throw new Error()  
+        alert("no coin found") 
     }
 console.log(response)
     const { data } = response;
@@ -120,6 +121,9 @@ console.log(data)
     console.log(coinData);
     setSearchedCoins(coinData);
     setSearchInput("");
+  }catch(err){
+    alert('No coin found')
+  }
   };
 
   return (

@@ -15,6 +15,7 @@ import {
 import { BrowserRouter as Router,Switch, Route} from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
 import Profile from './pages/Profile'
+import { Marque } from "./components/Marque/index";
 
 
 
@@ -48,8 +49,8 @@ function App() {
   return (
       <ApolloProvider client={client}>
         <Router>
+        <Marque style={{backgroundColor:'black'}} />
         <NavBar style={{backgroundColor:'black'}}/>
-          
             <Switch>
               <Route exact path='/' component={Home} />
             </Switch>
